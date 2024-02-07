@@ -1,4 +1,4 @@
-﻿namespace OriginsOfDestiny.Common.Services;
+﻿namespace OriginsOfDestiny.Common.Test;
 
 public class TestService
 {
