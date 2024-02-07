@@ -1,5 +1,5 @@
-﻿using OriginsOfDestiny.Common.Managers;
+﻿using OriginsOfDestiny.Common.Locators;
 
-var testService = new DIContainerManager().GetTestService();
+var testService = new DIContainerLocator().GetTestService();
 
 testService.Run();
