@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginsOfDestiny", "OriginsOfDestiny\OriginsOfDestiny.csproj", "{4C203182-5CEA-4B97-94E1-AE01CD69FDAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginsOfDestiny.Common", "OriginsOfDestiny.Common\OriginsOfDestiny.Common.csproj", "{23771034-CB88-491A-B8C6-DFC162E1B032}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4C203182-5CEA-4B97-94E1-AE01CD69FDAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C203182-5CEA-4B97-94E1-AE01CD69FDAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C203182-5CEA-4B97-94E1-AE01CD69FDAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23771034-CB88-491A-B8C6-DFC162E1B032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23771034-CB88-491A-B8C6-DFC162E1B032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23771034-CB88-491A-B8C6-DFC162E1B032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23771034-CB88-491A-B8C6-DFC162E1B032}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

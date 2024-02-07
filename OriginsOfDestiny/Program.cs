@@ -1,2 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using OriginsOfDestiny.Common.Managers;
+
+var testService = new DIContainerManager().GetTestService();
+
+testService.Run();
