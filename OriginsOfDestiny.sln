@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginsOfDestiny", "OriginsOfDestiny\OriginsOfDestiny.csproj", "{4C203182-5CEA-4B97-94E1-AE01CD69FDAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny", "OriginsOfDestiny\OriginsOfDestiny.csproj", "{4C203182-5CEA-4B97-94E1-AE01CD69FDAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginsOfDestiny.Common", "OriginsOfDestiny.Common\OriginsOfDestiny.Common.csproj", "{23771034-CB88-491A-B8C6-DFC162E1B032}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.Common", "OriginsOfDestiny.Common\OriginsOfDestiny.Common.csproj", "{23771034-CB88-491A-B8C6-DFC162E1B032}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginsOfDestiny.StartArc", "OriginsOfDestiny.StartArc\OriginsOfDestiny.StartArc.csproj", "{5D774687-73C3-4E8B-9DC6-40FF93065DE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{23771034-CB88-491A-B8C6-DFC162E1B032}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23771034-CB88-491A-B8C6-DFC162E1B032}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23771034-CB88-491A-B8C6-DFC162E1B032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D774687-73C3-4E8B-9DC6-40FF93065DE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D774687-73C3-4E8B-9DC6-40FF93065DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D774687-73C3-4E8B-9DC6-40FF93065DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D774687-73C3-4E8B-9DC6-40FF93065DE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

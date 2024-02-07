@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using OriginsOfDestiny.Common.Handlers;
 using OriginsOfDestiny.Common.Interfaces;
+using OriginsOfDestiny.Common.Locators;
 using OriginsOfDestiny.Common.Providers;
 using OriginsOfDestiny.Common.Test;
+using OriginsOfDestiny.Handlers;
 
-namespace OriginsOfDestiny.Common.Locators;
+namespace OriginsOfDestiny.Locators;
 
 public class DIContainerLocator
 {

@@ -1,3 +1,3 @@
-﻿using OriginsOfDestiny.Common.Locators;
+﻿using OriginsOfDestiny.Locators;
 
 new DIContainerLocator().RunTelegramBot();
