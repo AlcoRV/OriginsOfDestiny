@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OriginsOfDestiny.Game\OriginsOfDestiny.Game.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Properties\appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

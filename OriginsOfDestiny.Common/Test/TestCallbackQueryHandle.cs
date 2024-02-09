@@ -10,6 +10,8 @@ public class TestCallbackQueryHandle : ICallbackQueryHandler
     public async Task Handle(ITelegramBotClient botClient, CallbackQuery callbackQuery)
     {
         await botClient.SendTextMessageAsync(callbackQuery.From!.Id, callbackQuery.Data!,
-            replyMarkup: new InlineKeyboardMarkup(new InlineKeyboardButton[] { InlineKeyboardButton.WithCallbackData("Showed message", "Hidden message") }));
+            replyMarkup: new InlineKeyboardMarkup(new InlineKeyboardButton[] { InlineKeyboardButton.WithCallbackData("Showed message", "Hidden message"),
+                                                                                InlineKeyboardButton.WithCallbackData("Damage self", "damage"),
+            InlineKeyboardButton.WithCallbackData("SetName", "setname")}));
     }
 }

@@ -25,6 +25,7 @@ public class TelegramBotLocator: ITelegramBotLocator
     {
         _botClient.StartReceiving(_updateHandler.Update, _errorHandler.Error);
 
+        Console.WriteLine("Bot runs!");
         Console.ReadKey();
     }
 }
