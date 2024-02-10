@@ -1,9 +1,9 @@
 ﻿using Telegram.Bot.Types;
-using Telegram.Bot;
+using OriginsOfDestiny.Common.Models;
 
 namespace OriginsOfDestiny.Common.Interfaces;
 
 public interface ICallbackQueryHandler {
-    public Task Handle(ITelegramBotClient botClient, CallbackQuery callbackQuery);
+    public Task Handle(GameContext context, CallbackQuery callbackQuery);
 }
 

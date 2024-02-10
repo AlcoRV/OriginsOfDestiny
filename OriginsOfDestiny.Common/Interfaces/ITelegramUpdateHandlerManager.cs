@@ -2,6 +2,6 @@
 
 public interface ITelegramUpdateHandlerManager
 {
-    public IMessageHandler GetMessageHandler(string message);
-    public ICallbackQueryHandler GetCallbackQueryHandler(string callbackMessage);
+    public IMessageHandler GetMessageHandler(string code);
+    public ICallbackQueryHandler GetCallbackQueryHandler(string code);
 }

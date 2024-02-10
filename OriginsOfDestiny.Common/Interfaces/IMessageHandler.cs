@@ -1,8 +1,8 @@
 ﻿using Telegram.Bot.Types;
-using Telegram.Bot;
+using OriginsOfDestiny.Common.Models;
 
 namespace OriginsOfDestiny.Common.Interfaces;
 
 public interface IMessageHandler {
-    public Task Handle(ITelegramBotClient botClient, Message message);
+    public Task Handle(GameContext context, Message message);
 }

@@ -1,5 +1,4 @@
-﻿using Telegram.Bot;
-using Telegram.Bot.Types;
+﻿using Telegram.Bot.Types;
 
 namespace OriginsOfDestiny.Common.Models;
 
@@ -15,5 +14,5 @@ public abstract class WaitingForBaseMessageHandler
         }
     }
 
-    public abstract Task Handle(ITelegramBotClient botClient, Message message); 
+    public abstract Task Handle(Message message); 
 }
