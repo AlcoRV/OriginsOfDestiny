@@ -1,4 +1,4 @@
-﻿namespace OriginsOfDestiny.Game.Models;
+﻿namespace OriginsOfDestiny.Game.Models.Entity;
 
 public abstract class Entity
 {
@@ -7,7 +7,7 @@ public abstract class Entity
 
     public void DamageSelf()
     {
-        if(HP > 15)
+        if (HP > 15)
         {
             HP -= 15;
         }
