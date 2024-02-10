@@ -8,12 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Contents\OriginsOfDestiny.StartArc\OriginsOfDestiny.StartArc.csproj" />
     <ProjectReference Include="..\OriginsOfDestiny.Common\OriginsOfDestiny.Common.csproj" />
     <ProjectReference Include="..\OriginsOfDestiny.Game\OriginsOfDestiny.Game.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

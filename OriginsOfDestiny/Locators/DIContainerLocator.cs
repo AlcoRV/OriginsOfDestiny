@@ -2,9 +2,8 @@
 using OriginsOfDestiny.Common.Handlers;
 using OriginsOfDestiny.Common.Interfaces;
 using OriginsOfDestiny.Common.Locators;
-using OriginsOfDestiny.Common.Models;
+using OriginsOfDestiny.Common.Models.Storage;
 using OriginsOfDestiny.Common.Providers;
-using OriginsOfDestiny.Common.Test;
 using OriginsOfDestiny.Handlers;
 
 namespace OriginsOfDestiny.Locators;
@@ -21,12 +20,10 @@ public class DIContainerLocator
         serviceCollection.AddSingleton<TelegramBotLocator>();
         serviceCollection.AddTransient<ITelegramUpdateHandler, TelegramUpdateHandler>();
         serviceCollection.AddTransient<ITelegramErrorHandler, TelegramErrorHandler>();
-        serviceCollection.AddScoped<GameContext>();
+        serviceCollection.AddScoped<GameDataStorage>();
 
         _serviceProvider = serviceCollection.BuildServiceProvider();
     }
-
-    public TestService GetTestService() => _serviceProvider.GetRequiredService<TestService>();
 
     public void RunTelegramBot() => _serviceProvider.GetRequiredService<TelegramBotLocator>().RunBot();
 }
