@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\OriginsOfDestiny.Common\OriginsOfDestiny.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\WaitingForHandlers\Message\" />
+  </ItemGroup>
+
 </Project>

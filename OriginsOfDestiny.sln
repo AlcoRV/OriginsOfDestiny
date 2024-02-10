@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.Game", "Or
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contents", "Contents", "{4E257C4E-EBDC-40A8-A51D-E97E389E8505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginsOfDestiny.StartArc", "Contents\OriginsOfDestiny.StartArc\OriginsOfDestiny.StartArc.csproj", "{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.StartArc", "Contents\OriginsOfDestiny.StartArc\OriginsOfDestiny.StartArc.csproj", "{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
