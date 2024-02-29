@@ -1,4 +1,5 @@
-﻿using OriginsOfDestiny.Common.Interfaces;
+﻿using OriginsOfDestiny.Common.Interfaces.Handlers;
+using OriginsOfDestiny.Common.Interfaces.Managers;
 using OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers;
 using OriginsOfDestiny.StartArc.Models.MessageHandlers;
 
@@ -13,6 +14,10 @@ public class StartUpdateHandlerManager : ITelegramUpdateHandlerManager
 
     public IMessageHandler GetMessageHandler(string code)
     {
-        return new TestMessageHandler();
+        return code switch
+        {
+            "/start" => new StartMessageHandler(),
+            _ => new TestMessageHandler()
+        };
     }
 }

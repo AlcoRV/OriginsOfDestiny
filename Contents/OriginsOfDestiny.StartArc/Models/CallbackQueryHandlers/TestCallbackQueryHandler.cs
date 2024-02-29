@@ -1,5 +1,5 @@
-﻿using OriginsOfDestiny.Common.Interfaces;
-using OriginsOfDestiny.Common.Models;
+﻿using OriginsOfDestiny.Common.Interfaces.Handlers;
+using OriginsOfDestiny.Common.Interfaces.Storages;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -7,8 +7,8 @@ namespace OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers;
 
 public class TestCallbackQueryHandler : ICallbackQueryHandler
 {
-    public async Task Handle(GameContext context, CallbackQuery callbackQuery)
+    public async Task Handle(IGameData gameData, CallbackQuery callbackQuery)
     {
-        await context.BotClient.SendTextMessageAsync(callbackQuery.From.Id, callbackQuery.Data!);
+        await gameData.ClientData.BotClient.SendTextMessageAsync(callbackQuery.From.Id, callbackQuery.Data!);
     }
 }

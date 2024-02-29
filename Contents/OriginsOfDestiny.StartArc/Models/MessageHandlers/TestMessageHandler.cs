@@ -1,5 +1,5 @@
-﻿using OriginsOfDestiny.Common.Interfaces;
-using OriginsOfDestiny.Common.Models;
+﻿using OriginsOfDestiny.Common.Interfaces.Handlers;
+using OriginsOfDestiny.Common.Interfaces.Storages;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -7,8 +7,8 @@ namespace OriginsOfDestiny.StartArc.Models.MessageHandlers;
 
 public class TestMessageHandler : IMessageHandler
 {
-    public async Task Handle(GameContext context, Message message)
+    public async Task Handle(IGameData gameData, Message message)
     {
-        await context.BotClient.SendTextMessageAsync(message.Chat.Id, message.Text!);
+        await gameData.ClientData.BotClient.SendTextMessageAsync(message.Chat.Id, message.Text!);
     }
 }
