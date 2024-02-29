@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using OriginsOfDestiny.Common.Interfaces;
-using OriginsOfDestiny.Common.Properties.Settings;
+using OriginsOfDestiny.Common.Interfaces.Handlers;
+using OriginsOfDestiny.Common.Interfaces.Locators;
+using OriginsOfDestiny.Common.Options;
 using Telegram.Bot;
 
 namespace OriginsOfDestiny.Common.Locators;
@@ -13,8 +14,8 @@ public class TelegramBotLocator: ITelegramBotLocator
 
     public TelegramBotLocator(IConfiguration configuration, ITelegramUpdateHandler updateHandler, ITelegramErrorHandler errorHandler)
     {
-        var settings = configuration.GetSection(TelegramBotSettings.Name).Get<TelegramBotSettings>() 
-            ?? throw new NullReferenceException("Don't found telegram bot settings!");
+        var settings = configuration.GetSection(TelegramBotOptions.Name).Get<TelegramBotOptions>() 
+            ?? throw new NullReferenceException("Not found telegram bot settings!");
 
         _botClient = new TelegramBotClient(settings.Key);
         _updateHandler = updateHandler;

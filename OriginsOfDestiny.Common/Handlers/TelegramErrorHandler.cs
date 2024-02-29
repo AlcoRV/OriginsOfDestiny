@@ -1,4 +1,4 @@
-﻿using OriginsOfDestiny.Common.Interfaces;
+﻿using OriginsOfDestiny.Common.Interfaces.Handlers;
 using Telegram.Bot;
 
 namespace OriginsOfDestiny.Common.Handlers;

@@ -1,4 +1,6 @@
-﻿namespace OriginsOfDestiny.Common.Interfaces;
+﻿using OriginsOfDestiny.Common.Interfaces.Handlers;
+
+namespace OriginsOfDestiny.Common.Interfaces.Managers;
 
 public interface ITelegramUpdateHandlerManager
 {

@@ -1,7 +1,7 @@
 ﻿using Telegram.Bot.Types;
 using Telegram.Bot;
 
-namespace OriginsOfDestiny.Common.Interfaces;
+namespace OriginsOfDestiny.Common.Interfaces.Handlers;
 
 public interface ITelegramUpdateHandler
 {

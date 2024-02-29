@@ -1,4 +1,4 @@
-﻿namespace OriginsOfDestiny.Common.Interfaces;
+﻿namespace OriginsOfDestiny.Common.Interfaces.Locators;
 
 public interface ITelegramBotLocator
 {
