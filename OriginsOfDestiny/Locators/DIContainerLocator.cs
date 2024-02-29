@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using OriginsOfDestiny.Common.Handlers;
-using OriginsOfDestiny.Common.Interfaces;
+using OriginsOfDestiny.Common.Interfaces.Handlers;
+using OriginsOfDestiny.Common.Interfaces.Managers;
 using OriginsOfDestiny.Common.Locators;
-using OriginsOfDestiny.Common.Models.Storage;
+using OriginsOfDestiny.Common.Managers;
 using OriginsOfDestiny.Common.Providers;
 using OriginsOfDestiny.Handlers;
 
@@ -20,7 +21,7 @@ public class DIContainerLocator
         serviceCollection.AddSingleton<TelegramBotLocator>();
         serviceCollection.AddTransient<ITelegramUpdateHandler, TelegramUpdateHandler>();
         serviceCollection.AddTransient<ITelegramErrorHandler, TelegramErrorHandler>();
-        serviceCollection.AddScoped<GameDataStorage>();
+        serviceCollection.AddScoped<IPlayerContextManager, PlayerContextsManager>();
 
         _serviceProvider = serviceCollection.BuildServiceProvider();
     }

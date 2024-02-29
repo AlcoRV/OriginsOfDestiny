@@ -1,5 +1,6 @@
-﻿using OriginsOfDestiny.Common.Interfaces;
-using OriginsOfDestiny.Common.Models;
+﻿using OriginsOfDestiny.Common.Interfaces.Handlers;
+using OriginsOfDestiny.Common.Interfaces.Managers;
+using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Common.Models.Storage;
 using OriginsOfDestiny.Selectors;
 using Telegram.Bot;
@@ -9,41 +10,39 @@ namespace OriginsOfDestiny.Handlers;
 
 public class TelegramUpdateHandler : ITelegramUpdateHandler
 {
-    private readonly GameDataStorage _gameDataStorage;
+    private readonly IPlayerContextManager _playerContextManager;
 
-    public TelegramUpdateHandler(GameDataStorage gameDataStorage) {  
-        _gameDataStorage = gameDataStorage;
+    public TelegramUpdateHandler(IPlayerContextManager playerContextManager) {  
+        _playerContextManager = playerContextManager;
     }
 
     public async Task Update(ITelegramBotClient botClient, Update update, CancellationToken token)
     {
-        GameContext gameContext;
         ITelegramUpdateHandlerManager manager;
-        
-        if(update.Type == Telegram.Bot.Types.Enums.UpdateType.Message)
-        {
-            gameContext = _gameDataStorage.PlayerContextsStorage.GetContext(update.Message!.Chat.Id);
-            gameContext.BotClient ??= botClient;
-            manager = new TelegramHandlerManagerSelector().GetManager(gameContext.Arc)!;
+        IGameData gameData = new GameData();
+        gameData.ClientData.PlayerContext = _playerContextManager.GetContext(update.Message?.Chat.Id ?? update.CallbackQuery!.From.Id);
+        gameData.ClientData.BotClient ??= botClient;
 
-            if (gameContext.WaitingForMessage != null)
+        manager = new TelegramHandlerManagerSelector().GetManager(gameData.ClientData.PlayerContext.Arc)!;
+
+        if (update.Type == Telegram.Bot.Types.Enums.UpdateType.Message)
+        {
+            if (gameData.ClientData.WaitingForMessage != null)
             {
-                gameContext.WaitingForMessage?.Handle(update.Message);
+                gameData.ClientData.WaitingForMessage?.Handle(update.Message!);
                 return;
             }
 
-            await manager.GetMessageHandler(update.Message!.Text!).Handle(gameContext, update.Message);
+            await manager.GetMessageHandler(update.Message!.Text!).Handle(gameData, update.Message);
 
             return;
         }
 
         if(update.Type == Telegram.Bot.Types.Enums.UpdateType.CallbackQuery)
         {
-            gameContext = _gameDataStorage.PlayerContextsStorage.GetContext(update.CallbackQuery!.From.Id);
-            gameContext.BotClient ??= botClient;
-            manager = new TelegramHandlerManagerSelector().GetManager(gameContext.Arc)!;
+            manager = new TelegramHandlerManagerSelector().GetManager(gameData.ClientData.PlayerContext.Arc)!;
 
-            await manager.GetCallbackQueryHandler(update.CallbackQuery.Data!).Handle(gameContext, update.CallbackQuery);
+            await manager.GetCallbackQueryHandler(update.CallbackQuery!.Data!).Handle(gameData, update.CallbackQuery);
 
             return;
         }

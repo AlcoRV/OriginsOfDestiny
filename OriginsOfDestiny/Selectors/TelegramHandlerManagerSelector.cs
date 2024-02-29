@@ -1,10 +1,11 @@
-﻿using OriginsOfDestiny.Common.Interfaces;
+﻿using OriginsOfDestiny.Common.Interfaces.Managers;
 using OriginsOfDestiny.Game.Enums;
+using OriginsOfDestiny.Interfaces;
 using OriginsOfDestiny.StartArc.Managers;
 
 namespace OriginsOfDestiny.Selectors;
 
-public class TelegramHandlerManagerSelector
+public class TelegramHandlerManagerSelector: ITelegramHandlerManagerSelector
 {
     public ITelegramUpdateHandlerManager? GetManager(GameArc arc)
     {
