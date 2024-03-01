@@ -9,6 +9,10 @@ public class StartUpdateHandlerManager : ITelegramUpdateHandlerManager
 {
     public ICallbackQueryHandler GetCallbackQueryHandler(string code)
     {
+        if (new[] { "who", "how", "where" }.ToList().Contains(code))
+        {
+            return new SimonStartQueryHandler();
+        }
         return new TestCallbackQueryHandler();
     }
 

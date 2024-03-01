@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /OriginsOfDestiny.Common/Properties/appsettings.json
+Contents/OriginsOfDestiny.StartArc/wwwroot/
