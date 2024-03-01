@@ -11,7 +11,7 @@ public class StartUpdateHandlerManager : ITelegramUpdateHandlerManager
     {
         if (new[] { "who", "how", "where" }.ToList().Contains(code))
         {
-            return new SimonStartQueryHandler();
+            return new SimonStartCallbackQueryHandler();
         }
         return new TestCallbackQueryHandler();
     }

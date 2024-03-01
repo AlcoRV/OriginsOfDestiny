@@ -6,7 +6,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers;
 
-public class SimonStartQueryHandler : ICallbackQueryHandler
+public class SimonStartCallbackQueryHandler : ICallbackQueryHandler
 {
     public async Task Handle(IGameData gameData, CallbackQuery callbackQuery)
     {
