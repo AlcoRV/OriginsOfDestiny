@@ -26,5 +26,7 @@ public class StartMessageHandler : IMessageHandler
             }
             .Chunk(1))
             );
+
+        gameData.ClientData.DefaultMessageHandler = new SimonStartDefaultMessageHandler();
     }
 }
