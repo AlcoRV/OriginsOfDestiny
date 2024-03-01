@@ -11,9 +11,11 @@ namespace OriginsOfDestiny.Handlers;
 public class TelegramUpdateHandler : ITelegramUpdateHandler
 {
     private readonly IPlayerContextManager _playerContextManager;
+    private readonly ITimerHandler _timerHandler;
 
-    public TelegramUpdateHandler(IPlayerContextManager playerContextManager) {  
+    public TelegramUpdateHandler(IPlayerContextManager playerContextManager, ITimerHandler timerHandler) {  
         _playerContextManager = playerContextManager;
+        _timerHandler = timerHandler;
     }
 
     public async Task Update(ITelegramBotClient botClient, Update update, CancellationToken token)
@@ -22,6 +24,7 @@ public class TelegramUpdateHandler : ITelegramUpdateHandler
         IGameData gameData = new GameData();
         gameData.ClientData.PlayerContext = _playerContextManager.GetContext(update.Message?.Chat.Id ?? update.CallbackQuery!.From.Id);
         gameData.ClientData.BotClient ??= botClient;
+        gameData.ClientData.TimerHandler ??= _timerHandler;
 
         manager = new TelegramHandlerManagerSelector().GetManager(gameData.ClientData.PlayerContext.Arc)!;
 

@@ -22,6 +22,7 @@ public class DIContainerLocator
         serviceCollection.AddTransient<ITelegramUpdateHandler, TelegramUpdateHandler>();
         serviceCollection.AddTransient<ITelegramErrorHandler, TelegramErrorHandler>();
         serviceCollection.AddScoped<IPlayerContextManager, PlayerContextsManager>();
+        serviceCollection.AddSingleton<ITimerHandler, TimerHandler>();
 
         _serviceProvider = serviceCollection.BuildServiceProvider();
     }
