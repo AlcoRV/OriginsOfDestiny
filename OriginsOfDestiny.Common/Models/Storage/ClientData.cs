@@ -12,4 +12,5 @@ public class ClientData : IClientData
     public IPlayerContext PlayerContext { get; set; }
     public ITimerHandler TimerHandler { get; set; }
     public IEnumerable<string> AvailablesCodes { get; set; }
+    public IMessageHandler DefaultMessageHandler {  get; set; }
 }

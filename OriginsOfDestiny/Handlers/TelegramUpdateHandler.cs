@@ -3,6 +3,7 @@ using OriginsOfDestiny.Common.Interfaces.Managers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Common.Models.Storage;
 using OriginsOfDestiny.Selectors;
+using OriginsOfDestiny.StartArc.Models.MessageHandlers;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -36,7 +37,15 @@ public class TelegramUpdateHandler : ITelegramUpdateHandler
                 return;
             }
 
-            await manager.GetMessageHandler(update.Message!.Text!).Handle(gameData, update.Message);
+            if (!string.IsNullOrWhiteSpace(update.Message.Text)
+                && update.Message.Text.Equals("/start", StringComparison.OrdinalIgnoreCase))
+            {
+                await new StartMessageHandler().Handle(gameData, update.Message);
+            }
+            else if(gameData.ClientData.DefaultMessageHandler != null)
+            {
+                await gameData.ClientData.DefaultMessageHandler.Handle(gameData, update.Message);
+            }
 
             return;
         }
