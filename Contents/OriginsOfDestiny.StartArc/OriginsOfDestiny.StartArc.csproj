@@ -20,6 +20,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Models\CallbackQueryHandlers\SimonStartCallbackQueryHandler.ru-RU.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\MessageHandlers\SimonStartDefaultMessageHandler.ru-RU.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\MessageHandlers\StartMessageHandler.en-US.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Models\MessageHandlers\StartMessageHandler.ru-RU.resx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="wwwroot\simon.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

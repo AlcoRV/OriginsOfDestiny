@@ -3,25 +3,34 @@ using OriginsOfDestiny.Common.Interfaces.Managers;
 using OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers;
 using OriginsOfDestiny.StartArc.Models.MessageHandlers;
 
-namespace OriginsOfDestiny.StartArc.Managers;
-
-public class StartUpdateHandlerManager : ITelegramUpdateHandlerManager
+namespace OriginsOfDestiny.StartArc.Managers
 {
-    public ICallbackQueryHandler GetCallbackQueryHandler(string code)
-    {
-        if (new[] { "who", "how", "where" }.ToList().Contains(code))
-        {
-            return new SimonStartCallbackQueryHandler();
-        }
-        return new TestCallbackQueryHandler();
-    }
+    using Constants = Constants.Constants;
 
-    public IMessageHandler GetMessageHandler(string code)
+    public class StartUpdateHandlerManager : ITelegramUpdateHandlerManager
     {
-        return code switch
+        public ICallbackQueryHandler GetCallbackQueryHandler(string code)
         {
-            "/start" => new StartMessageHandler(),
-            _ => new TestMessageHandler()
-        };
+            if (new[] { 
+                Constants.Messages.SimonStart.Me.Who,
+                Constants.Messages.SimonStart.Me.How,
+                Constants.Messages.SimonStart.Me.Where
+            }
+            .ToList()
+            .Contains(code))
+            {
+                return new SimonStartCallbackQueryHandler();
+            }
+            return new TestCallbackQueryHandler();
+        }
+
+        public IMessageHandler GetMessageHandler(string code)
+        {
+            return code switch
+            {
+                "/start" => new StartMessageHandler(),
+                _ => new TestMessageHandler()
+            };
+        }
     }
 }
