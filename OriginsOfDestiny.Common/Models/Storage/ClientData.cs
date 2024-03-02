@@ -9,8 +9,9 @@ public class ClientData : IClientData
 {
     public ITelegramBotClient BotClient { get; set; }
     public WaitingForBaseMessageHandler WaitingForMessage { get; set; }
-    public IPlayerContext PlayerContext { get; set; }
+    public IPlayerContext PlayerContext { get; set; } = new PlayerContext();
     public ITimerHandler TimerHandler { get; set; }
     public IEnumerable<string> AvailablesCodes { get; set; }
     public IMessageHandler DefaultMessageHandler {  get; set; }
+    public string LastCode {  get; set; }
 }

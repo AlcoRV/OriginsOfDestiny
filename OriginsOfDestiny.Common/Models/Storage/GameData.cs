@@ -4,5 +4,5 @@ namespace OriginsOfDestiny.Common.Models.Storage;
 
 public class GameData: IGameData
 {
-    public IClientData ClientData { get; set; } = new ClientData();
+    public IClientData ClientData { get; set; }
 }

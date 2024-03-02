@@ -2,7 +2,7 @@
 
 namespace OriginsOfDestiny.Common.Interfaces.Managers;
 
-public interface IPlayerContextManager
+public interface IClientDataManager
 {
-    public IPlayerContext GetContext(long id);
+    public bool GetOrCreateContext(long id, out IClientData clientData);
 }
