@@ -21,7 +21,7 @@ public class DIContainerLocator
         serviceCollection.AddSingleton<TelegramBotLocator>();
         serviceCollection.AddTransient<ITelegramUpdateHandler, TelegramUpdateHandler>();
         serviceCollection.AddTransient<ITelegramErrorHandler, TelegramErrorHandler>();
-        serviceCollection.AddScoped<IPlayerContextManager, PlayerContextsManager>();
+        serviceCollection.AddScoped<IClientDataManager, ClientDataManager>();
         serviceCollection.AddSingleton<ITimerHandler, TimerHandler>();
 
         _serviceProvider = serviceCollection.BuildServiceProvider();
