@@ -4,10 +4,8 @@ namespace OriginsOfDestiny.Game.Models.Entity;
 
 public class MainHero : Entity
 {
-    public MainHero(string name, Gender gender)
+    public MainHero()
     {
-        HP = HP == 0 ? 100 : HP;
-        Name = name;
-        Gender = gender;
+        HP = 100;
     }
 }

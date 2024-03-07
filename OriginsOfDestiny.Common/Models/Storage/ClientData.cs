@@ -14,4 +14,5 @@ public class ClientData : IClientData
     public IEnumerable<string> AvailablesCodes { get; set; }
     public IMessageHandler DefaultMessageHandler {  get; set; }
     public string LastCode {  get; set; }
+    public IEnumerable<string> RiddenMessagesCodes { set; get; } = new HashSet<string>();
 }

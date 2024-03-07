@@ -6,6 +6,6 @@ namespace OriginsOfDestiny.Common.Models;
 
 public class PlayerContext : IPlayerContext
 {
-    public MainHero MainHero { get; set; }
+    public MainHero MainHero { get; set; } = new MainHero();
     public GameArc Arc { get; set; }
 }

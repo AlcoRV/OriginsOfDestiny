@@ -16,9 +16,11 @@ namespace OriginsOfDestiny.StartArc.Models.MessageHandlers
         {
             var resourceHelper = new ResourceHelper<StartMessageHandler>();
 
-            await gameData.ClientData.BotClient.SendTextMessageAsync(message.Chat.Id, resourceHelper.GetValue(Constants.Messages.SimonStart.Out.WokeUp));
+            gameData.ClientData.RiddenMessagesCodes = new HashSet<string>();
 
-            using var fileStream = new FileManager().GetFileStream("simon.jpg");
+            await gameData.ClientData.BotClient.SendTextMessageAsync(message.Chat.Id, resourceHelper.GetValue(Constants.Messages.SimonStart.Out.WokeUp));
+            
+            using var fileStream = new FileManager().GetFileStream(Constants.Files.Avatars.Simon);
 
             await gameData.ClientData.BotClient.SendPhotoAsync(
                     chatId: message.Chat.Id,

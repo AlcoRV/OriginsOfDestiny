@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="M_HOW" xml:space="preserve">
+  <data name="START_M_HOW" xml:space="preserve">
     <value>Как я здесь оказался?</value>
   </data>
-  <data name="M_WHERE" xml:space="preserve">
+  <data name="START_M_WHERE" xml:space="preserve">
     <value>Что это за место?</value>
   </data>
-  <data name="M_WHO" xml:space="preserve">
+  <data name="START_M_WHO" xml:space="preserve">
     <value>Ты кто?</value>
   </data>
-  <data name="O_WOKE_UP" xml:space="preserve">
-    <value>Ты просыпаешься от прикосновения мягкой лапки к лицу...</value>
+  <data name="START_O_WOKE_UP" xml:space="preserve">
+    <value>Ты просыпаешься от прикосновения мягкой лапки к лицу 🐾</value>
   </data>
-  <data name="S_ONE_MORE" xml:space="preserve">
+  <data name="START_S_ONE_MORE" xml:space="preserve">
     <value>Симон: "Ещё один пришелец, причём совсем без магии."</value>
   </data>
 </root>

@@ -11,13 +11,9 @@ namespace OriginsOfDestiny.StartArc.Managers
     {
         public ICallbackQueryHandler GetCallbackQueryHandler(string code)
         {
-            if (new[] { 
-                Constants.Messages.SimonStart.Me.Who,
-                Constants.Messages.SimonStart.Me.How,
-                Constants.Messages.SimonStart.Me.Where
-            }
-            .ToList()
-            .Contains(code))
+            var handleCode = code.Split("_")[0];
+
+            if (handleCode.Equals(Constants.Messages.SimonStart.Name))
             {
                 return new SimonStartCallbackQueryHandler();
             }

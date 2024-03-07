@@ -13,4 +13,5 @@ public interface IClientData
     public IEnumerable<string> AvailablesCodes { get; set; }
     public IMessageHandler DefaultMessageHandler { get; set; }
     public string LastCode { get; set; }
+    public IEnumerable<string> RiddenMessagesCodes { get; set; }
 }

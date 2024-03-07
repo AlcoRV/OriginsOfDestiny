@@ -1,16 +1,17 @@
-﻿using Telegram.Bot.Types;
+﻿using OriginsOfDestiny.Common.Interfaces.Storages;
+using Telegram.Bot.Types;
 
 namespace OriginsOfDestiny.Common.Models.WaitingFor;
 
 public abstract class WaitingForBaseMessageHandler
 {
-    protected PlayerContext? GameContext { get; private init; }
+    protected IGameData? GameData { get; private init; }
 
     public static class Factory
     {
-        public static T Create<T>(PlayerContext gameContext) where T : WaitingForBaseMessageHandler, new()
+        public static T Create<T>(IGameData gameData) where T : WaitingForBaseMessageHandler, new()
         {
-            return new T() { GameContext = gameContext };
+            return new T() { GameData = gameData };
         }
     }
 
