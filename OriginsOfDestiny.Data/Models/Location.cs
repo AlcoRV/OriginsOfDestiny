@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace OriginsOfDestiny.Data.Models;
 
-namespace OriginsOfDestiny.Data.Models
+public class Location
 {
-    public class Location
-    {
-    }
+    public string Name { get; set; }
+    public Area CentralArea { get; set; }
 }
