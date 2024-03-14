@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\OriginsOfDestiny.Common\OriginsOfDestiny.Common.csproj" />
+    <ProjectReference Include="..\OriginsOfDestiny.Data\OriginsOfDestiny.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OriginsOfDestiny.Common\OriginsOfDestiny.Common.csproj" />
-    <ProjectReference Include="..\OriginsOfDestiny.Data\OriginsOfDestiny.Data.csproj" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 
 </Project>
