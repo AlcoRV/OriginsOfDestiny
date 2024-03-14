@@ -5,8 +5,8 @@ namespace OriginsOfDestiny.Game.Models.Entity;
 public abstract class Entity
 {
     public string? Name { get; set; }
-    public int HP { get; protected set; }
-    public Gender Gender { get; set; }
+    public virtual int HP { get; set; }
+    public virtual Gender Gender { get; set; }
 
     public void DamageSelf()
     {

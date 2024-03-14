@@ -18,13 +18,13 @@ public static class Constants
                 public static readonly string Calm = "START_S_CALM";
                 public static readonly string Kill = "START_S_KILL";
 
-                public static readonly string Stop = "START_S_STOP";//
+                public static readonly string Stop = "START_S_STOP";
 
                 public static readonly string SorrySayName = "START_S_SORRYSAYNAME";
                 public static readonly string SayName = "START_S_SAYNAME";
 
                 public static readonly string FoolTry = "START_S_FOOLTRY";
-                public static readonly string Bastard = "START_S_BASTARD";
+                public static readonly string Insult = "START_S_INSULT";
                 public static readonly string NotNeedName = "START_S_NOTNEEDNAME";
                 public static readonly string SeeLater = "START_S_SEELATER";
                 public static readonly string GetLost = "START_S_GETLOST";
@@ -45,14 +45,16 @@ public static class Constants
                 public static readonly string WokeUp = "START_O_WOKE_UP";
             }
 
+            public static class General
+            {
+                public static readonly string FoolM = "FOOL_M";
+                public static readonly string FoolW = "FOOL_W";
+                public static readonly string Bastard = "BASTARD";
+                public static readonly string TryPartM = "TRYPART_M";
+                public static readonly string TryPartW = "TRYPART_W";
+            }
+
             public static readonly string Name = "START";
-        }
-    }
-    public static class Files
-    {
-        public static class Avatars
-        {
-            public static readonly string Simon = "simon.jpg";
         }
     }
 }

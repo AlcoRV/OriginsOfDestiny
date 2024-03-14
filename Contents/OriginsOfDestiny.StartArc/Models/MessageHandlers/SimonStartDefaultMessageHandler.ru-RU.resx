@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FOOL_M" xml:space="preserve">
+    <value>дурак</value>
+  </data>
+  <data name="FOOL_W" xml:space="preserve">
+    <value>дура</value>
+  </data>
   <data name="START_S_CALM" xml:space="preserve">
     <value>Симон: "Спокойнее😡"</value>
   </data>
-  <data name="START_S_FOOL" xml:space="preserve">
-    <value>Симон: "Ты дурак?😡"</value>
+  <data name="START_S_INSULT" xml:space="preserve">
+    <value>Симон: "Ещё одна глупая собака😡"</value>
   </data>
   <data name="START_S_KILL" xml:space="preserve">
     <value>Симон: "Убить тебя будет не жалко😡"</value>

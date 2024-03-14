@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="START_M_HOW" xml:space="preserve">
-    <value>Как я здесь оказался?</value>
+    <value>Откуда я здесь?</value>
   </data>
   <data name="START_M_LEAVE" xml:space="preserve">
     <value>🔘 Хорошо, я пойду</value>
   </data>
   <data name="START_M_NOTGIRL" xml:space="preserve">
-    <value>Я не девушка!</value>
+    <value>Я не девочка!</value>
   </data>
   <data name="START_M_WHAT" xml:space="preserve">
     <value>Каво?</value>
@@ -148,7 +148,7 @@
     <value>Симон: "Чёрт его знает, откуда вы все здесь берётесь. У каждого отшибает память. Лишь ходят, землю сотрясают, житья не дают."</value>
   </data>
   <data name="START_S_WHO" xml:space="preserve">
-    <value>Симон: "М-да, ты совсем безнадёжен...
+    <value>Симон: "М-да, вы совсем безнадёжны...
 Я Симон, дух стихий. Впрочем, тебе этого достаточно"</value>
   </data>
 </root>

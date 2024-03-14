@@ -17,7 +17,7 @@ namespace OriginsOfDestiny.StartArc.Models.MessageHandlers
             var messageText = "";
             switch (new Random().Next(3))
             {
-                case 0: messageText = resourceHelper.GetValue(Constants.Messages.SimonStart.Simon.Fool); break;
+                case 0: messageText = resourceHelper.GetValue(Constants.Messages.SimonStart.Simon.Insult); break;
                 case 1: messageText = resourceHelper.GetValue(Constants.Messages.SimonStart.Simon.Calm); break;
                 case 2: messageText = resourceHelper.GetValue(Constants.Messages.SimonStart.Simon.Kill); break;
 

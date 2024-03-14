@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="START_M_HOW" xml:space="preserve">
-    <value>Как я здесь оказался?</value>
+    <value>Откуда я здесь?</value>
   </data>
   <data name="START_M_WHERE" xml:space="preserve">
     <value>Что это за место?</value>

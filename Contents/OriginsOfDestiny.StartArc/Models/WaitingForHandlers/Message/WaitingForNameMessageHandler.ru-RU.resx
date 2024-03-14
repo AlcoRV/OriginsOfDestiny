@@ -117,19 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="START_S_BASTARD" xml:space="preserve">
-    <value>Симон: "Придурок!"</value>
+  <data name="BASTARD" xml:space="preserve">
+    <value>Придурок</value>
+  </data>
+  <data name="FOOL_W" xml:space="preserve">
+    <value>Дура</value>
   </data>
   <data name="START_S_FOOLTRY" xml:space="preserve">
-    <value>Симон: "Разговаривать разучился? Повтори!"</value>
+    <value>Симон: "Разговаривать {0}? Повтори!"</value>
+  </data>
+  <data name="START_S_FOOL_W" xml:space="preserve">
+    <value>Симон: "Дура!"</value>
   </data>
   <data name="START_S_GETLOST" xml:space="preserve">
     <value>Симон: "Проваливай!"</value>
   </data>
+  <data name="START_S_INSULT" xml:space="preserve">
+    <value>Симон: "{0}!"</value>
+  </data>
   <data name="START_S_NOTNEEDNAME" xml:space="preserve">
-    <value>Симон: "Молчи! Больше не нужно. Я знаю твоё имя. Придурок."</value>
+    <value>Симон: "Молчи! Больше не нужно. Я знаю твоё имя. {0}."</value>
   </data>
   <data name="START_S_SEELATER" xml:space="preserve">
     <value>Симон: "Ещё увидимся!"</value>
+  </data>
+  <data name="TRYPART_M" xml:space="preserve">
+    <value>разучился</value>
+  </data>
+  <data name="TRYPART_W" xml:space="preserve">
+    <value>разучилась</value>
   </data>
 </root>

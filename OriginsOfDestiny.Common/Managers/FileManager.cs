@@ -1,6 +1,6 @@
 ﻿using OriginsOfDestiny.Common.Interfaces.Managers;
 
-namespace OriginsOfDestiny.StartArc.Managers;
+namespace OriginsOfDestiny.Common.Managers;
 
 public class FileManager : IFileManager
 {

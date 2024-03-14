@@ -101,9 +101,9 @@ namespace OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers
                 };
 
             await gameData.ClientData.BotClient.EditMessageCaptionAsync(callbackQuery.Message!.Chat.Id,
-                callbackQuery.Message.MessageId,
-                message,
-                replyMarkup: new InlineKeyboardMarkup(buttons.Chunk(1))
+                            callbackQuery.Message.MessageId,
+                            message,
+                            replyMarkup: new InlineKeyboardMarkup(buttons.Chunk(1))
             );
 
             gameData.ClientData.WaitingForMessage = WaitingForBaseMessageHandler.Factory.Create<WaitingForNameMessageHandler>(gameData);
@@ -120,9 +120,9 @@ namespace OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers
             }
 
             await gameData.ClientData.BotClient.EditMessageCaptionAsync(callbackQuery.Message!.Chat.Id,
-                 callbackQuery.Message.MessageId,
-                 message
-                );
+                             callbackQuery.Message.MessageId,
+                             message
+                            );
 
             gameData.ClientData.WaitingForMessage = WaitingForBaseMessageHandler.Factory.Create<WaitingForNameMessageHandler>(gameData);
         }
