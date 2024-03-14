@@ -42,7 +42,13 @@ public static class Constants
             }
             public static class Out
             {
+                public static readonly string Start = "START"; 
                 public static readonly string WokeUp = "START_O_WOKE_UP";
+
+                public static readonly string Named = "START_O_NAMED";
+
+                public static readonly string Disappear = "START_O_DISAPPEAR";
+                public static readonly string EAF = "START_O_EAF";
             }
 
             public static class General

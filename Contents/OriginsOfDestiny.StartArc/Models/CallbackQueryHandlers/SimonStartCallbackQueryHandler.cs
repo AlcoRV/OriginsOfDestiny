@@ -21,10 +21,9 @@ namespace OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers
 
             _resourceHelper = new ResourceHelper<SimonStartCallbackQueryHandler>();
 
-            if (gameData.ClientData.RiddenMessagesCodes.Intersect(new[] { Constants.Messages.SimonStart.Me.Who ,
-                                                                       Constants.Messages.SimonStart.Me.How,
-                                                                       Constants.Messages.SimonStart.Me.Where})
-                .Count() < 3)
+            if (new[] { Constants.Messages.SimonStart.Me.Who ,
+                    Constants.Messages.SimonStart.Me.How,
+                    Constants.Messages.SimonStart.Me.Where}.Contains(callbackQuery.Data))
             {
                 await HandleMainMessages(gameData, callbackQuery);
             }

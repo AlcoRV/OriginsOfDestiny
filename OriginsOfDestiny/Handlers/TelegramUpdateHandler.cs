@@ -46,7 +46,8 @@ public class TelegramUpdateHandler : ITelegramUpdateHandler
         }
 
         if (!string.IsNullOrWhiteSpace(message.Text)
-            && message.Text.Equals("/start", StringComparison.OrdinalIgnoreCase))
+            && (message.Text.Equals("/start", StringComparison.OrdinalIgnoreCase)
+                || message.Text.Equals("/restart", StringComparison.OrdinalIgnoreCase)))
         {
             await new StartMessageHandler().Handle(gameData, message);
         }

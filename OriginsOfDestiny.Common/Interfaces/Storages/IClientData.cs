@@ -15,4 +15,5 @@ public interface IClientData
     public string LastCode { get; set; }
     public IEnumerable<string> RiddenMessagesCodes { get; set; }
     public int MainMessageId { set; get; }
+    public void Clear();
 }

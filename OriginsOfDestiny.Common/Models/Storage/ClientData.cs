@@ -16,4 +16,12 @@ public class ClientData : IClientData
     public string LastCode {  get; set; }
     public IEnumerable<string> RiddenMessagesCodes { set; get; } = new HashSet<string>();
     public int MainMessageId { set; get; }
+
+    public void Clear()
+    {
+        WaitingForMessage = null;
+        (AvailablesCodes as HashSet<string>).Clear();
+        DefaultMessageHandler = null;
+        (RiddenMessagesCodes as HashSet<string>).Clear();
+    }
 }

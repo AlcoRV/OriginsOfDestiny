@@ -17,6 +17,14 @@ namespace OriginsOfDestiny.StartArc.Models.MessageHandlers
         {
             var resourceHelper = new ResourceHelper<StartMessageHandler>();
 
+            await gameData.ClientData.BotClient.SendTextMessageAsync(message.Chat.Id, resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Out.Start),
+                replyMarkup: new ReplyKeyboardMarkup(
+                    new KeyboardButton("/restart")
+                    )
+                {
+                    ResizeKeyboard = true
+                }); ;
+
             gameData.ClientData.RiddenMessagesCodes = new HashSet<string>();
 
             await gameData.ClientData.BotClient.SendTextMessageAsync(message.Chat.Id, resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Out.WokeUp));

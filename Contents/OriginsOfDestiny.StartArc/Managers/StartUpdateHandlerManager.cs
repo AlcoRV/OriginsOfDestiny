@@ -25,6 +25,7 @@ namespace OriginsOfDestiny.StartArc.Managers
             return code switch
             {
                 "/start" => new StartMessageHandler(),
+                "/restart" => new StartMessageHandler(),
                 _ => new TestMessageHandler()
             };
         }

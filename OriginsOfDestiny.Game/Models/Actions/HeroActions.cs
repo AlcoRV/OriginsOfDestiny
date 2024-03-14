@@ -13,6 +13,15 @@ namespace OriginsOfDestiny.Game.Models.Actions
         private readonly GameData _gameData;
         private readonly Hero _hero;
 
+        public HeroActions(GameData gameData, Hero hero)
+        {
+            _gameData = gameData;
+            _hero = hero;
+        }
 
+        public void LookAround()
+        {
+
+        }
     }
 }

@@ -1,12 +1,15 @@
 ﻿using OriginsOfDestiny.Common.Helpers;
-using OriginsOfDestiny.Common.Interfaces.Storages;
+using OriginsOfDestiny.Common.Managers;
 using OriginsOfDestiny.Common.Models.WaitingFor;
 using OriginsOfDestiny.Data.Enums;
+using OriginsOfDestiny.Data.Models.Entity;
 using Telegram.Bot;
+using Telegram.Bot.Types;
 
 namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
 {
     using static OriginsOfDestiny.StartArc.Constants.Constants.Messages;
+    using GameConstants = Data.Constants.Constants;
 
     public class WaitingForNameMessageHandler : WaitingForBaseMessageHandler
     {
@@ -38,7 +41,7 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
 
             await GameData.ClientData.BotClient.EditMessageCaptionAsync(message.From!.Id,
                 GameData.ClientData.MainMessageId,
-                 GetMessageByReplyCode(replyCode, GameData.ClientData.PlayerContext.Hero.Gender)
+                 GetMessageByReplyCode(replyCode, GameData.ClientData.PlayerContext.Hero)
                 );
 
             if (replyCode.Equals(SimonStart.Simon.NotNeedName))
@@ -57,36 +60,55 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
 
             if (!replyCode.Equals(SimonStart.Simon.FoolTry))
             {
-                await ExitDialog(GameData);
+                await GameData.ClientData.BotClient.SendTextMessageAsync(message.Chat!.Id,
+                    string.Format(_resourceHelper.GetValue(SimonStart.Out.Named), GameData.ClientData.PlayerContext.Hero.Name)
+                );
+
+                await ExitDialog(message);
             }
 
             Thread.Sleep(3000);
-            await GameData.ClientData.BotClient.DeleteMessageAsync(message.From!.Id, message.MessageId);
+            await GameData.ClientData.BotClient.DeleteMessageAsync(message.Chat.Id, message.MessageId);
         }
 
-        private string GetMessageByReplyCode(string replyCode, Gender gender)
+        private string GetMessageByReplyCode(string replyCode, Hero hero)
         {
             var message = _resourceHelper.GetValue(replyCode);
 
             if (replyCode.Equals(SimonStart.Simon.FoolTry))
             {
-                message = string.Format(message, gender == Gender.Man
+                message = string.Format(message, hero.Gender == Gender.Man
                                                 ? _resourceHelper.GetValue(SimonStart.General.TryPartM)
                                                 : _resourceHelper.GetValue(SimonStart.General.TryPartW));
             }
             else if(replyCode.Equals(SimonStart.Simon.NotNeedName))
             {
-                message = string.Format(message, gender == Gender.Man
+                message = string.Format(message, hero.Gender == Gender.Man
                                                 ? _resourceHelper.GetValue(SimonStart.General.Bastard)
                                                 : _resourceHelper.GetValue(SimonStart.General.FoolW));
+            }
+            else if (replyCode.Equals(SimonStart.Simon.SeeLater))
+            {
+                message = string.Format(message, hero.Name);
             }
 
             return message;
         }
 
-        private async Task ExitDialog(IGameData gameData)
+        private async Task ExitDialog(Telegram.Bot.Types.Message message)
         {
-            // to the world!
+            await GameData.ClientData.BotClient.SendTextMessageAsync(message.Chat.Id,
+                _resourceHelper.GetValue(SimonStart.Out.Disappear));
+
+            using var fileStream = new FileManager().GetFileStream(GameConstants.Files.Pictures.Locations.EAForest);
+
+            var answer = await GameData.ClientData.BotClient.SendPhotoAsync(
+                    chatId: message.Chat.Id,
+                    photo: new InputFileStream(fileStream),
+                    caption: _resourceHelper.GetValue(SimonStart.Out.EAF));
+
+            GameData.ClientData.Clear();
+            GameData.ClientData.MainMessageId = answer.MessageId;
         }
     }
 }

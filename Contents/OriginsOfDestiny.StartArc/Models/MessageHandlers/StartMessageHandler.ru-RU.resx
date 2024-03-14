@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="START" xml:space="preserve">
+    <value>Если история была перезапущена, рекомендуется очистить историю чата. 
+Приятного времяпрепровождения!</value>
+  </data>
   <data name="START_M_HOW" xml:space="preserve">
     <value>Откуда я здесь?</value>
   </data>

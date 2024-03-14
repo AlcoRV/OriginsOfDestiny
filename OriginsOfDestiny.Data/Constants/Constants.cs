@@ -10,6 +10,11 @@
                 {
                     public static readonly string Simon = nameof(Characters) + "/simon.jpg";
                 }
+
+                public static class Locations
+                {
+                    public static readonly string EAForest = nameof(Locations) + "/eaforest.jpg";
+                }
             }
         }
     }
