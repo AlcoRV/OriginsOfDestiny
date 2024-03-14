@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OriginsOfDestiny.Game\OriginsOfDestiny.Game.csproj" />
+    <ProjectReference Include="..\OriginsOfDestiny.Data\OriginsOfDestiny.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

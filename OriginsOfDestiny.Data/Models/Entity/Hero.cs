@@ -1,8 +1,8 @@
-﻿using OriginsOfDestiny.Game.Enums;
+﻿using OriginsOfDestiny.Data.Enums;
 
-namespace OriginsOfDestiny.Game.Models.Entity;
+namespace OriginsOfDestiny.Data.Models.Entity;
 
-public class MainHero : Entity
+public class Hero : Entity
 {
     public override Gender Gender { get; set; } = Gender.Woman;
     public override int HP { get; set; } = 100;

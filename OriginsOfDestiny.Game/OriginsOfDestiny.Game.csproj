@@ -7,9 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="wwwroot\Characters\simon.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OriginsOfDestiny.Common\OriginsOfDestiny.Common.csproj" />
+    <ProjectReference Include="..\OriginsOfDestiny.Data\OriginsOfDestiny.Data.csproj" />
   </ItemGroup>
 
 </Project>

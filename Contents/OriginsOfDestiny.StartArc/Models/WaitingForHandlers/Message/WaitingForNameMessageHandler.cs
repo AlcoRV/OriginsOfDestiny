@@ -1,7 +1,7 @@
 ﻿using OriginsOfDestiny.Common.Helpers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Common.Models.WaitingFor;
-using OriginsOfDestiny.Game.Enums;
+using OriginsOfDestiny.Data.Enums;
 using Telegram.Bot;
 
 namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
@@ -32,13 +32,13 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
             else
             {
                 GameData.ClientData.WaitingForMessage = null;
-                GameData.ClientData.PlayerContext.MainHero.Name = message.Text;
+                GameData.ClientData.PlayerContext.Hero.Name = message.Text;
                 replyCode = SimonStart.Simon.SeeLater;
             }
 
             await GameData.ClientData.BotClient.EditMessageCaptionAsync(message.From!.Id,
                 GameData.ClientData.MainMessageId,
-                 GetMessageByReplyCode(replyCode, GameData.ClientData.PlayerContext.MainHero.Gender)
+                 GetMessageByReplyCode(replyCode, GameData.ClientData.PlayerContext.Hero.Gender)
                 );
 
             if (replyCode.Equals(SimonStart.Simon.NotNeedName))
@@ -50,7 +50,7 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
                  _resourceHelper.GetValue(SimonStart.Simon.GetLost)
                 );
 
-                GameData.ClientData.PlayerContext.MainHero.Name = _resourceHelper.GetValue(GameData.ClientData.PlayerContext.MainHero.Gender == Game.Enums.Gender.Man
+                GameData.ClientData.PlayerContext.Hero.Name = _resourceHelper.GetValue(GameData.ClientData.PlayerContext.Hero.Gender == Gender.Man
                                                                                                 ? SimonStart.General.Bastard
                                                                                                 : SimonStart.General.FoolW);
             }

@@ -8,10 +8,18 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.Common", "OriginsOfDestiny.Common\OriginsOfDestiny.Common.csproj", "{23771034-CB88-491A-B8C6-DFC162E1B032}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.Game", "OriginsOfDestiny.Game\OriginsOfDestiny.Game.csproj", "{5033EF07-B7A5-483F-BFC5-C6BFAF1BA97D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE} = {AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contents", "Contents", "{4E257C4E-EBDC-40A8-A51D-E97E389E8505}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.StartArc", "Contents\OriginsOfDestiny.StartArc\OriginsOfDestiny.StartArc.csproj", "{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE} = {AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginsOfDestiny.Data", "OriginsOfDestiny.Data\OriginsOfDestiny.Data.csproj", "{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +43,10 @@ Global
 		{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

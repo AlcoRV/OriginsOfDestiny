@@ -1,6 +1,4 @@
-﻿using OriginsOfDestiny.Common.Interfaces.Storages;
-
-namespace OriginsOfDestiny.Common.Interfaces.Handlers;
+﻿namespace OriginsOfDestiny.Common.Interfaces.Handlers;
 
 public interface ITimerHandler
 {

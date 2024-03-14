@@ -2,6 +2,7 @@
 using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Common.Models.WaitingFor;
+using OriginsOfDestiny.Data.Enums;
 using OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -116,7 +117,7 @@ namespace OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers
             {
                 message = _resourceHelper.GetValue(Constants.Messages.SimonStart.Simon.SorrySayName);
 
-                gameData.ClientData.PlayerContext.MainHero.Gender = Game.Enums.Gender.Man;
+                gameData.ClientData.PlayerContext.Hero.Gender = Gender.Man;
             }
 
             await gameData.ClientData.BotClient.EditMessageCaptionAsync(callbackQuery.Message!.Chat.Id,

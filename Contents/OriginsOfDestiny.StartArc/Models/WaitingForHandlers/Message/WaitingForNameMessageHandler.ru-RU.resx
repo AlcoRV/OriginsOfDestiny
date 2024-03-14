@@ -123,6 +123,13 @@
   <data name="FOOL_W" xml:space="preserve">
     <value>Дура</value>
   </data>
+  <data name="START_O_DISAPPEAR" xml:space="preserve">
+    <value>Симон исчез в золотом свете, оставив тебя в недоумении 😕</value>
+  </data>
+  <data name="START_O_EAF" xml:space="preserve">
+    <value>Впереди раскинулся Вечно-осенний лес 🍁
+Дорога приключений уже началась?</value>
+  </data>
   <data name="START_S_FOOLTRY" xml:space="preserve">
     <value>Симон: "Разговаривать {0}? Повтори!"</value>
   </data>
@@ -139,7 +146,7 @@
     <value>Симон: "Молчи! Больше не нужно. Я знаю твоё имя. {0}."</value>
   </data>
   <data name="START_S_SEELATER" xml:space="preserve">
-    <value>Симон: "Ещё увидимся!"</value>
+    <value>Симон: "Найди стихию! Это твой путь. Ещё увидимся!"</value>
   </data>
   <data name="TRYPART_M" xml:space="preserve">
     <value>разучился</value>

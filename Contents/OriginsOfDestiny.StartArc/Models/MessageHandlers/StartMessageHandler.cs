@@ -9,7 +9,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 namespace OriginsOfDestiny.StartArc.Models.MessageHandlers
 {
     using ArcConstants = Constants.Constants;
-    using GameConstants = Game.Constants.Constants;
+    using GameConstants = Data.Constants.Constants;
 
     public class StartMessageHandler : IMessageHandler
     {

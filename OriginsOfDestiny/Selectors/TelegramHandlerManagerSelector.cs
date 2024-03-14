@@ -1,5 +1,5 @@
 ﻿using OriginsOfDestiny.Common.Interfaces.Managers;
-using OriginsOfDestiny.Game.Enums;
+using OriginsOfDestiny.Data.Enums;
 using OriginsOfDestiny.Interfaces;
 using OriginsOfDestiny.StartArc.Managers;
 

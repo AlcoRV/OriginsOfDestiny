@@ -1,4 +1,4 @@
-﻿namespace OriginsOfDestiny.Game.Constants
+﻿namespace OriginsOfDestiny.Data.Constants
 {
     public static class Constants
     {
