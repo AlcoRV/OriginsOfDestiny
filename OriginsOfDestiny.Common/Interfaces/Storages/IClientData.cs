@@ -6,6 +6,7 @@ namespace OriginsOfDestiny.Common.Interfaces.Storages;
 
 public interface IClientData
 {
+    public long Id { get; set; }
     public ITelegramBotClient BotClient { get; set; }
     public WaitingForBaseMessageHandler WaitingForMessage { get; set; }
     public IPlayerContext PlayerContext { get; set; }

@@ -11,11 +11,12 @@ public class ClientData : IClientData
     public WaitingForBaseMessageHandler WaitingForMessage { get; set; }
     public IPlayerContext PlayerContext { get; set; } = new PlayerContext();
     public ITimerHandler TimerHandler { get; set; }
-    public IEnumerable<string> AvailablesCodes { get; set; }
+    public IEnumerable<string> AvailablesCodes { get; set; } = new HashSet<string>();
     public IMessageHandler DefaultMessageHandler {  get; set; }
     public string LastCode {  get; set; }
     public IEnumerable<string> RiddenMessagesCodes { set; get; } = new HashSet<string>();
     public int MainMessageId { set; get; }
+    public long Id { get; set; }
 
     public void Clear()
     {

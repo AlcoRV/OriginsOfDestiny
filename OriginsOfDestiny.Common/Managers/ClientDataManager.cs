@@ -22,7 +22,7 @@ public class ClientDataManager: IClientDataManager
         }
         else
         {
-            clientData = new ClientData();
+            clientData = new ClientData() { Id = id };
             _clientContexts.Add(id, clientData);
             return true;
         }

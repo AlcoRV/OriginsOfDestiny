@@ -2,6 +2,7 @@
 using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Common.Managers;
+using OriginsOfDestiny.StartArc.TemporaryTestData;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
@@ -46,6 +47,7 @@ namespace OriginsOfDestiny.StartArc.Models.MessageHandlers
 
             gameData.ClientData.DefaultMessageHandler = new SimonStartDefaultMessageHandler();
             gameData.ClientData.MainMessageId = answer.MessageId;
+            gameData.ClientData.PlayerContext.Area = TemporaryTestData.TemporaryTestData.DownEAForest;
         }
     }
 }

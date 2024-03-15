@@ -17,5 +17,18 @@
                 }
             }
         }
+        public static class Messages
+        {
+            public static class Effects
+            {
+                public static readonly string Positive = "POSITIVE";
+                public static readonly string Negative = "NEGATIVE";
+            }
+            public static class Items
+            {
+                public static readonly string Use = "USE";
+            }
+        }
+        
     }
 }

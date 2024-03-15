@@ -3,8 +3,11 @@ using OriginsOfDestiny.Common.Managers;
 using OriginsOfDestiny.Common.Models.WaitingFor;
 using OriginsOfDestiny.Data.Enums;
 using OriginsOfDestiny.Data.Models.Entity;
+using OriginsOfDestiny.Game.Extentions;
+using OriginsOfDestiny.Game.Models.Actions;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
 {
@@ -105,7 +108,11 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
             var answer = await GameData.ClientData.BotClient.SendPhotoAsync(
                     chatId: message.Chat.Id,
                     photo: new InputFileStream(fileStream),
-                    caption: _resourceHelper.GetValue(SimonStart.Out.EAF));
+                    caption: _resourceHelper.GetValue(SimonStart.Out.EAF),
+                    replyMarkup: new InlineKeyboardMarkup(
+                        (await HeroActions.GetBaseActions())
+                        .Chunk(1))
+                    );
 
             GameData.ClientData.Clear();
             GameData.ClientData.MainMessageId = answer.MessageId;

@@ -13,4 +13,9 @@
     <ProjectReference Include="..\OriginsOfDestiny.Game\OriginsOfDestiny.Game.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Managers\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

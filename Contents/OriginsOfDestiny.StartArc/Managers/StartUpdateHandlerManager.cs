@@ -1,5 +1,6 @@
 ﻿using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Interfaces.Managers;
+using OriginsOfDestiny.Models.CallbackQueryHandlers;
 using OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers;
 using OriginsOfDestiny.StartArc.Models.MessageHandlers;
 
@@ -17,7 +18,7 @@ namespace OriginsOfDestiny.StartArc.Managers
             {
                 return new SimonStartCallbackQueryHandler();
             }
-            return new TestCallbackQueryHandler();
+            return new HeroActionsCallbackQueryHandler();
         }
 
         public IMessageHandler GetMessageHandler(string code)
