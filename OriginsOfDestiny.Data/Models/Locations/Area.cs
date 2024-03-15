@@ -1,4 +1,4 @@
-﻿namespace OriginsOfDestiny.Data.Models;
+﻿namespace OriginsOfDestiny.Data.Models.Locations;
 
 public class Area
 {

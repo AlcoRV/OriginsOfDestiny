@@ -6,5 +6,5 @@ namespace OriginsOfDestiny.Game.Extentions;
 
 public static class GameExtentions
 {
-    public static HeroActions GetActions(this Hero hero, IGameData gameData) => new HeroActions(gameData, hero);
+    public static HeroActions GetActions(this Hero hero, IGameData gameData) => new(gameData);
 }
