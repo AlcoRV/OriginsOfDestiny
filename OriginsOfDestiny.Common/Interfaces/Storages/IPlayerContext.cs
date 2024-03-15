@@ -1,5 +1,5 @@
-﻿using OriginsOfDestiny.Data.Models.Entity;
-using OriginsOfDestiny.Data.Enums;
+﻿using OriginsOfDestiny.Data.Enums;
+using OriginsOfDestiny.Data.Models.Entity;
 
 namespace OriginsOfDestiny.Common.Interfaces.Storages;
 
