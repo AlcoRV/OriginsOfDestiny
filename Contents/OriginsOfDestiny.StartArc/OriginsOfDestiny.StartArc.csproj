@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\OriginsOfDestiny.Common\OriginsOfDestiny.Common.csproj" />
-    <ProjectReference Include="..\..\OriginsOfDestiny.Data\OriginsOfDestiny.Data.csproj" />
+    <ProjectReference Include="..\..\OriginsOfDestiny.Data\OriginsOfDestiny.DataObjects.csproj" />
     <ProjectReference Include="..\..\OriginsOfDestiny.Game\OriginsOfDestiny.Game.csproj" />
   </ItemGroup>
 

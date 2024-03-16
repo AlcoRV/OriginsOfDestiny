@@ -10,7 +10,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 namespace OriginsOfDestiny.StartArc.Models.MessageHandlers
 {
     using ArcConstants = Constants.Constants;
-    using GameConstants = Data.Constants.Constants;
+    using GameConstants = Data.Constants.DConstants;
 
     public class StartMessageHandler : IMessageHandler
     {
@@ -46,7 +46,7 @@ namespace OriginsOfDestiny.StartArc.Models.MessageHandlers
                 );
 
             gameData.ClientData.DefaultMessageHandler = new SimonStartDefaultMessageHandler();
-            gameData.ClientData.MainMessageId = answer.MessageId;
+            gameData.ClientData.MainMessage = answer;
             gameData.ClientData.PlayerContext.Area = TemporaryTestData.TemporaryTestData.DownEAForest;
         }
     }

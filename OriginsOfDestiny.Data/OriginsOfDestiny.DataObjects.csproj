@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Items\Equipment\" />
-    <Folder Include="Models\Items\Pickups\" />
   </ItemGroup>
 
 </Project>

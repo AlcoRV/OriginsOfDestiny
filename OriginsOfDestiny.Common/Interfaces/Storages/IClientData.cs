@@ -1,6 +1,8 @@
 ﻿using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Models.WaitingFor;
 using Telegram.Bot;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace OriginsOfDestiny.Common.Interfaces.Storages;
 
@@ -15,6 +17,7 @@ public interface IClientData
     public IMessageHandler DefaultMessageHandler { get; set; }
     public string LastCode { get; set; }
     public IEnumerable<string> RiddenMessagesCodes { get; set; }
-    public int MainMessageId { set; get; }
+    public Message MainMessage { set; get; }
     public void Clear();
+    public Task EditMainMessageAsync(Message message = null, string caption = null, InlineKeyboardMarkup replyMarkup = null);
 }

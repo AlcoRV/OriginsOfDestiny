@@ -120,4 +120,7 @@
   <data name="LOOKAROUND" xml:space="preserve">
     <value>Оглядеться</value>
   </data>
+  <data name="WESEE" xml:space="preserve">
+    <value>Вы видите:</value>
+  </data>
 </root>

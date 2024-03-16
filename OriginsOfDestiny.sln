@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.StartArc",
 		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE} = {AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginsOfDestiny.Data", "OriginsOfDestiny.Data\OriginsOfDestiny.Data.csproj", "{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.DataObjects", "OriginsOfDestiny.Data\OriginsOfDestiny.DataObjects.csproj", "{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

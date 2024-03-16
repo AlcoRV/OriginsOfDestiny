@@ -12,7 +12,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
 {
     using static OriginsOfDestiny.StartArc.Constants.Constants.Messages;
-    using GameConstants = Data.Constants.Constants;
+    using GameConstants = Data.Constants.DConstants;
 
     public class WaitingForNameMessageHandler : WaitingForBaseMessageHandler
     {
@@ -43,7 +43,7 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
             }
 
             await GameData.ClientData.BotClient.EditMessageCaptionAsync(message.From!.Id,
-                GameData.ClientData.MainMessageId,
+                GameData.ClientData.MainMessage.MessageId,
                  GetMessageByReplyCode(replyCode, GameData.ClientData.PlayerContext.Hero)
                 );
 
@@ -52,7 +52,7 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
                 Thread.Sleep(5000);
 
                 await GameData.ClientData.BotClient.EditMessageCaptionAsync(message.From!.Id,
-                    GameData.ClientData.MainMessageId,
+                    GameData.ClientData.MainMessage.MessageId,
                  _resourceHelper.GetValue(SimonStart.Simon.GetLost)
                 );
 
@@ -110,12 +110,12 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
                     photo: new InputFileStream(fileStream),
                     caption: _resourceHelper.GetValue(SimonStart.Out.EAF),
                     replyMarkup: new InlineKeyboardMarkup(
-                        (await HeroActions.GetBaseActions())
+                        (HeroActions.GetBaseActions())
                         .Chunk(1))
                     );
 
             GameData.ClientData.Clear();
-            GameData.ClientData.MainMessageId = answer.MessageId;
+            GameData.ClientData.MainMessage = answer;
         }
     }
 }

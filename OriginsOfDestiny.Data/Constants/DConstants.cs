@@ -1,6 +1,6 @@
 ﻿namespace OriginsOfDestiny.Data.Constants
 {
-    public static class Constants
+    public static class DConstants
     {
         public static class Files
         {
@@ -27,6 +27,11 @@
             public static class Items
             {
                 public static readonly string Use = "USE";
+            }
+            public static class Out
+            {
+                public static readonly string Found = "FOUND";
+                public static readonly string NotFound = "NOTFOUND";
             }
         }
         

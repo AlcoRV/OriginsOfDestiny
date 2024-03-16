@@ -4,6 +4,7 @@ namespace OriginsOfDestiny.Data.Models.Items.InteractiveItems;
 
 public class Stream : InteractiveItem
 {
+    public override Guid Id { get; set; } = Guid.NewGuid();
     public override string Name { get; set; }
     public Effect PositiveEffect { get; set; } = new Effect() { Health = 20 };
     public Effect NegativeEffect { get; set; } = new Effect() { Health = -20 };
