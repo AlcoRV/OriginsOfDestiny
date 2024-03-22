@@ -1,7 +1,9 @@
-﻿using OriginsOfDestiny.Data.Models.Items;
-using OriginsOfDestiny.Data.Models.Items.InteractiveItems;
+﻿using OriginsOfDestiny.Data.Models.Items.InteractiveItems;
 using OriginsOfDestiny.Data.Models.Locations;
+using OriginsOfDestiny.DataObjects.Interfaces.InteractiveItems;
+using OriginsOfDestiny.DataObjects.Interfaces.Items;
 using OriginsOfDestiny.DataObjects.Models.Items.Pickups;
+using static OriginsOfDestiny.Data.Constants.DConstants.Files.Pictures;
 using Stream = OriginsOfDestiny.Data.Models.Items.InteractiveItems.Stream;
 
 namespace OriginsOfDestiny.StartArc.TemporaryTestData
@@ -15,9 +17,9 @@ namespace OriginsOfDestiny.StartArc.TemporaryTestData
         };
 
         public static readonly Stream StrangeStream = new() { Name = "Серебристый ручей" };
-        public static readonly Duplo StrangeDuplo = new() { 
+        public static readonly Hollow StrangeDuplo = new() { 
             Name = "Дерево с очень интересным дуплом",
-            Loot = new HashSet<Item>() { 
+            Loot = new HashSet<IItem>() { 
                 StrangeNote
             }
         };
@@ -26,11 +28,12 @@ namespace OriginsOfDestiny.StartArc.TemporaryTestData
         {
             Name = "Чаща Вечно-осеннего леса 🍂",
             Description = "Самый центр Вечно-осеннего леса. Возможно, в нём есть своя тайна.",
-            InteractiveItems = new HashSet<InteractiveItem>()
+            InteractiveItems = new HashSet<IInteractiveItem>()
             {
                 StrangeStream,
                 StrangeDuplo
-            }
+            },
+            Picture = "Locations/eaforest.jpg"
         };
     }
 }

@@ -47,13 +47,13 @@ namespace OriginsOfDestiny.Game.Models.Actions
                             )
                         );
                 }
-                else if (iItem is Duplo duplo)
+                else if (iItem is Hollow duplo)
                 {
                     textButtons.Add(
                         InlineKeyboardButton.WithCallbackData(
-                            new ResourceHelper<Duplo>()
+                            new ResourceHelper<Hollow>()
                             .GetValue(DConstants.Messages.Items.Use),
-                            $"{DConstants.Messages.Items.Use}_{nameof(Duplo)}_{duplo.Id}"
+                            $"{DConstants.Messages.Items.Use}_{nameof(Hollow)}_{duplo.Id}"
                             )
                         );
                 }

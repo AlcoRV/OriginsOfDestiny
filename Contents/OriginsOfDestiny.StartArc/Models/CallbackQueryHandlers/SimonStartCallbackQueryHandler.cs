@@ -2,6 +2,7 @@
 using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Common.Models.WaitingFor;
+using OriginsOfDestiny.Common.UI;
 using OriginsOfDestiny.Data.Enums;
 using OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message;
 using Telegram.Bot;
@@ -42,8 +43,8 @@ namespace OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers
 
         private async Task HandleMainMessages(IGameData gameData, CallbackQuery callbackQuery)
         {
-            string message = null;
             var riddenCodes = gameData.ClientData.RiddenMessagesCodes as HashSet<string>;
+            string message;
             if (callbackQuery.Data.Equals(Constants.Messages.SimonStart.Me.Who, StringComparison.OrdinalIgnoreCase))
             {
                 message = _resourceHelper.GetValue(Constants.Messages.SimonStart.Simon.Who);
@@ -75,20 +76,19 @@ namespace OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers
 
             var buttons = new List<InlineKeyboardButton>()
                 {
-                InlineKeyboardButton.WithCallbackData(_resourceHelper.GetValue(Constants.Messages.SimonStart.Me.Who), Constants.Messages.SimonStart.Me.Who),
-                InlineKeyboardButton.WithCallbackData(_resourceHelper.GetValue(Constants.Messages.SimonStart.Me.How), Constants.Messages.SimonStart.Me.How),
-                InlineKeyboardButton.WithCallbackData(_resourceHelper.GetValue(Constants.Messages.SimonStart.Me.Where), Constants.Messages.SimonStart.Me.Where)
+                UITools.GetButton<SimonStartCallbackQueryHandler>(Constants.Messages.SimonStart.Me.Who),
+                UITools.GetButton<SimonStartCallbackQueryHandler>(Constants.Messages.SimonStart.Me.How),
+                UITools.GetButton<SimonStartCallbackQueryHandler>(Constants.Messages.SimonStart.Me.Where)
                 };
 
             if(gameData.ClientData.RiddenMessagesCodes.Count() == 3)
             {
-                buttons.Add(InlineKeyboardButton.WithCallbackData(_resourceHelper.GetValue(Constants.Messages.SimonStart.Me.Leave), Constants.Messages.SimonStart.Me.Leave));
+                buttons.Add(UITools.GetButton<SimonStartCallbackQueryHandler>(Constants.Messages.SimonStart.Me.Leave));
             }
 
-            await gameData.ClientData.BotClient.EditMessageCaptionAsync(callbackQuery.Message!.Chat.Id,
-                 callbackQuery.Message.MessageId,
-                 message,
-                 replyMarkup: new InlineKeyboardMarkup(buttons.Chunk(1))
+            await gameData.ClientData.EditMainMessageAsync(
+                caption: message,
+                replyMarkup: new InlineKeyboardMarkup(buttons.Chunk(1))
                 );
         }
 
@@ -97,14 +97,13 @@ namespace OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers
             var message = _resourceHelper.GetValue(Constants.Messages.SimonStart.Simon.Stop);
             var buttons = new List<InlineKeyboardButton>
                 {
-                    InlineKeyboardButton.WithCallbackData(_resourceHelper.GetValue(Constants.Messages.SimonStart.Me.NotGirl), Constants.Messages.SimonStart.Me.NotGirl)
+                    UITools.GetButton<SimonStartCallbackQueryHandler>(Constants.Messages.SimonStart.Me.NotGirl)
                 };
 
-            await gameData.ClientData.BotClient.EditMessageCaptionAsync(callbackQuery.Message!.Chat.Id,
-                            callbackQuery.Message.MessageId,
-                            message,
-                            replyMarkup: new InlineKeyboardMarkup(buttons.Chunk(1))
-            );
+            await gameData.ClientData.EditMainMessageAsync(
+                caption: message,
+                replyMarkup: new InlineKeyboardMarkup(buttons.Chunk(1))
+                );
 
             gameData.ClientData.WaitingForMessage = WaitingForBaseMessageHandler.Factory.Create<WaitingForNameMessageHandler>(gameData);
         }
@@ -119,10 +118,7 @@ namespace OriginsOfDestiny.StartArc.Models.CallbackQueryHandlers
                 gameData.ClientData.PlayerContext.Hero.Gender = Gender.Man;
             }
 
-            await gameData.ClientData.BotClient.EditMessageCaptionAsync(callbackQuery.Message!.Chat.Id,
-                             callbackQuery.Message.MessageId,
-                             message
-                            );
+            await gameData.ClientData.EditMainMessageAsync(caption: message);
 
             gameData.ClientData.WaitingForMessage = WaitingForBaseMessageHandler.Factory.Create<WaitingForNameMessageHandler>(gameData);
         }

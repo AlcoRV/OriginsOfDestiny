@@ -18,6 +18,9 @@ public interface IClientData
     public string LastCode { get; set; }
     public IEnumerable<string> RiddenMessagesCodes { get; set; }
     public Message MainMessage { set; get; }
+
     public void Clear();
     public Task EditMainMessageAsync(Message message = null, string caption = null, InlineKeyboardMarkup replyMarkup = null);
+    public Task SendPhotoAsync(string caption, InlineKeyboardMarkup replyMarkup = null);
+    public Task SendMessageAsync(string message, bool restartButton = false);
 }

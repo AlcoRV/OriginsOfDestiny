@@ -15,15 +15,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="wwwroot\Characters\simon.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="wwwroot\Locations\eaforest.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Models\Items\Equipment\" />
   </ItemGroup>
 

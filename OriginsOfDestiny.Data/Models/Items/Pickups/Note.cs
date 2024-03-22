@@ -1,13 +1,14 @@
 ﻿using OriginsOfDestiny.Data.Models.Items;
+using OriginsOfDestiny.DataObjects.Interfaces.Items;
 
 namespace OriginsOfDestiny.DataObjects.Models.Items.Pickups
 {
-    public class Note : Item
+    public class Note : IItem
     {
-        public override Guid Id { get; set; } = Guid.NewGuid();
-        public override string Name { get; set; }
-        public override int Volume { get; set; } = 0;
-        public override int Cost { get; set; } = 0;
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public string Name { get; set; }
+        public int Volume { get; set; } = 0;
+        public int Cost { get; set; } = 0;
         public string Description { get; set; }
     }
 }

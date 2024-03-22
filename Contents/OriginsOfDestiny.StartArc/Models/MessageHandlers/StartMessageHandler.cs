@@ -1,16 +1,14 @@
 ﻿using OriginsOfDestiny.Common.Helpers;
 using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
-using OriginsOfDestiny.Common.Managers;
-using OriginsOfDestiny.StartArc.TemporaryTestData;
-using Telegram.Bot;
+using OriginsOfDestiny.Common.UI;
+using OriginsOfDestiny.Game.Objects.Opponents.ElementSpirits;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace OriginsOfDestiny.StartArc.Models.MessageHandlers
 {
     using ArcConstants = Constants.Constants;
-    using GameConstants = Data.Constants.DConstants;
 
     public class StartMessageHandler : IMessageHandler
     {
@@ -18,36 +16,29 @@ namespace OriginsOfDestiny.StartArc.Models.MessageHandlers
         {
             var resourceHelper = new ResourceHelper<StartMessageHandler>();
 
-            await gameData.ClientData.BotClient.SendTextMessageAsync(message.Chat.Id, resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Out.Start),
-                replyMarkup: new ReplyKeyboardMarkup(
-                    new KeyboardButton("/restart")
-                    )
-                {
-                    ResizeKeyboard = true
-                }); ;
-
-            gameData.ClientData.RiddenMessagesCodes = new HashSet<string>();
-
-            await gameData.ClientData.BotClient.SendTextMessageAsync(message.Chat.Id, resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Out.WokeUp));
-            
-            using var fileStream = new FileManager().GetFileStream(GameConstants.Files.Pictures.Characters.Simon);
-
-            var answer = await gameData.ClientData.BotClient.SendPhotoAsync(
-                    chatId: message.Chat.Id,
-                    photo: new InputFileStream(fileStream),
-                    caption: resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Simon.OneMore),
-                    replyMarkup: new InlineKeyboardMarkup(new[]
-                {
-                InlineKeyboardButton.WithCallbackData(resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Me.Who), ArcConstants.Messages.SimonStart.Me.Who),
-                InlineKeyboardButton.WithCallbackData(resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Me.How), ArcConstants.Messages.SimonStart.Me.How),
-                InlineKeyboardButton.WithCallbackData(resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Me.Where), ArcConstants.Messages.SimonStart.Me.Where)
-                }
-                .Chunk(1))
+            await gameData.ClientData.SendMessageAsync(
+                resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Out.Start),
+                true
                 );
 
+            gameData.ClientData.RiddenMessagesCodes = new HashSet<string>();
             gameData.ClientData.DefaultMessageHandler = new SimonStartDefaultMessageHandler();
-            gameData.ClientData.MainMessage = answer;
             gameData.ClientData.PlayerContext.Area = TemporaryTestData.TemporaryTestData.DownEAForest;
+            gameData.ClientData.PlayerContext.Opponent = HighElementSpirits.Simon;
+
+            await gameData.ClientData.SendMessageAsync(resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Out.WokeUp));
+
+            await gameData.ClientData.SendPhotoAsync(
+                resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Simon.OneMore),
+                new InlineKeyboardMarkup(
+                    new[]
+                    {
+                        UITools.GetButton<StartMessageHandler>(ArcConstants.Messages.SimonStart.Me.Who),
+                        UITools.GetButton<StartMessageHandler>(ArcConstants.Messages.SimonStart.Me.How),
+                        UITools.GetButton<StartMessageHandler>(ArcConstants.Messages.SimonStart.Me.Where)
+                    }
+                    .Chunk(1))
+                );
         }
     }
 }

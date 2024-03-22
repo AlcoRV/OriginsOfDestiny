@@ -1,6 +1,8 @@
 ﻿using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
+using OriginsOfDestiny.Common.Managers;
 using OriginsOfDestiny.Common.Models.WaitingFor;
+using OriginsOfDestiny.DataObjects.Enums;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
@@ -32,8 +34,47 @@ public class ClientData : IClientData
     {
         MainMessage = await BotClient.EditMessageCaptionAsync(Id,
                  messageId: message == null ? MainMessage.MessageId : message.MessageId,
-                 caption: caption == null ? MainMessage.Text : caption,
+                 caption: caption == null ? MainMessage.Text : GetCaption(caption),
                  replyMarkup: replyMarkup
                 );
+    }
+
+    public async Task SendMessageAsync(string message, bool restartButton = false)
+    {
+        var replyMarkup = restartButton
+            ? new ReplyKeyboardMarkup(
+                new KeyboardButton("/restart")
+                )
+            {
+                ResizeKeyboard = true
+            }
+            : null;
+
+        await BotClient.SendTextMessageAsync(
+            Id, 
+            message,
+            replyMarkup: replyMarkup);
+    }
+
+    public async Task SendPhotoAsync(string caption, InlineKeyboardMarkup replyMarkup = null)
+    {
+        var picture = PlayerContext.Opponent != null
+            ? PlayerContext.Opponent.Picture
+            : PlayerContext.Area.Picture;
+
+        using var fileStream = new FileManager().GetFileStream(picture);
+
+        MainMessage = await BotClient.SendPhotoAsync(Id,
+                    new InputFileStream(fileStream),
+                    caption: GetCaption(caption),
+                    replyMarkup: replyMarkup
+                );
+    }
+
+    private string GetCaption(string caption)
+    {
+        return PlayerContext.Opponent == null || PlayerContext.Opponent.Attitude == Attitude.Hostile
+            ? $"{PlayerContext.GetHeroHealth()}\n{caption}"
+            : caption;
     }
 }

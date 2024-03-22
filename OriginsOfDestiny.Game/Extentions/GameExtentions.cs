@@ -1,5 +1,5 @@
 ﻿using OriginsOfDestiny.Common.Interfaces.Storages;
-using OriginsOfDestiny.Data.Models.Entity;
+using OriginsOfDestiny.DataObjects.Models.Entity;
 using OriginsOfDestiny.Game.Models.Actions;
 
 namespace OriginsOfDestiny.Game.Extentions;

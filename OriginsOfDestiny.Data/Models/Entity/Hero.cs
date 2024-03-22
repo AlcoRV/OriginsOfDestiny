@@ -1,12 +1,16 @@
 ﻿using OriginsOfDestiny.Data.Enums;
-using OriginsOfDestiny.Data.Models.Items;
+using OriginsOfDestiny.DataObjects.Interfaces.Items;
+using OriginsOfDestiny.DataObjects.Interfaces.Models;
+using OriginsOfDestiny.DataObjects.Interfaces.Properties;
 
-namespace OriginsOfDestiny.Data.Models.Entity;
+namespace OriginsOfDestiny.DataObjects.Models.Entity;
 
-public class Hero : Entity
+public class Hero : IEntity, IMortal, IHasInventory
 {
-    public override Gender Gender { get; set; } = Gender.Woman;
-    public override int HP { get; set; } = 100;
-    public override string Name { get; set; }
-    public override IEnumerable<Item> Inventory { get; set; } = new HashSet<Item>();
+    public Gender Gender { get; set; } = Gender.Woman;
+    public int MaxHP { get; set; } = 100;
+    public int HP { get; set; } = 100;
+    public string Name { get; set; }
+    public IEnumerable<IItem> Inventory { get; set; } = new HashSet<IItem>();
+
 }

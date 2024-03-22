@@ -1,9 +1,9 @@
 ﻿using OriginsOfDestiny.Common.Helpers;
 using OriginsOfDestiny.Common.Managers;
+using OriginsOfDestiny.Common.Models.Storage;
 using OriginsOfDestiny.Common.Models.WaitingFor;
 using OriginsOfDestiny.Data.Enums;
-using OriginsOfDestiny.Data.Models.Entity;
-using OriginsOfDestiny.Game.Extentions;
+using OriginsOfDestiny.DataObjects.Models.Entity;
 using OriginsOfDestiny.Game.Models.Actions;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -42,19 +42,17 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
                 replyCode = SimonStart.Simon.SeeLater;
             }
 
-            await GameData.ClientData.BotClient.EditMessageCaptionAsync(message.From!.Id,
-                GameData.ClientData.MainMessage.MessageId,
-                 GetMessageByReplyCode(replyCode, GameData.ClientData.PlayerContext.Hero)
+            await GameData.ClientData.EditMainMessageAsync(
+                caption: GetMessageByReplyCode(replyCode, GameData.ClientData.PlayerContext.Hero)
                 );
 
             if (replyCode.Equals(SimonStart.Simon.NotNeedName))
             {
                 Thread.Sleep(5000);
 
-                await GameData.ClientData.BotClient.EditMessageCaptionAsync(message.From!.Id,
-                    GameData.ClientData.MainMessage.MessageId,
-                 _resourceHelper.GetValue(SimonStart.Simon.GetLost)
-                );
+                await GameData.ClientData.EditMainMessageAsync(
+                    caption: _resourceHelper.GetValue(SimonStart.Simon.GetLost)
+                    );
 
                 GameData.ClientData.PlayerContext.Hero.Name = _resourceHelper.GetValue(GameData.ClientData.PlayerContext.Hero.Gender == Gender.Man
                                                                                                 ? SimonStart.General.Bastard
@@ -63,9 +61,8 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
 
             if (!replyCode.Equals(SimonStart.Simon.FoolTry))
             {
-                await GameData.ClientData.BotClient.SendTextMessageAsync(message.Chat!.Id,
-                    string.Format(_resourceHelper.GetValue(SimonStart.Out.Named), GameData.ClientData.PlayerContext.Hero.Name)
-                );
+                await GameData.ClientData.SendMessageAsync(
+                    string.Format(_resourceHelper.GetValue(SimonStart.Out.Named), GameData.ClientData.PlayerContext.Hero.Name));
 
                 await ExitDialog(message);
             }
@@ -100,8 +97,8 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
 
         private async Task ExitDialog(Telegram.Bot.Types.Message message)
         {
-            await GameData.ClientData.BotClient.SendTextMessageAsync(message.Chat.Id,
-                _resourceHelper.GetValue(SimonStart.Out.Disappear));
+            await GameData.ClientData.SendMessageAsync(
+                    string.Format(_resourceHelper.GetValue(SimonStart.Out.Disappear)));
 
             using var fileStream = new FileManager().GetFileStream(GameConstants.Files.Pictures.Locations.EAForest);
 
@@ -116,6 +113,7 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
 
             GameData.ClientData.Clear();
             GameData.ClientData.MainMessage = answer;
+            GameData.ClientData.PlayerContext.Opponent = null;
         }
     }
 }

@@ -5,6 +5,7 @@ using OriginsOfDestiny.Data.Constants;
 using OriginsOfDestiny.Data.Models.Effects;
 using OriginsOfDestiny.Data.Models.Items;
 using OriginsOfDestiny.Data.Models.Items.InteractiveItems;
+using OriginsOfDestiny.DataObjects.Interfaces.Items;
 using OriginsOfDestiny.Game.Constants;
 using OriginsOfDestiny.Game.Extentions;
 using OriginsOfDestiny.Game.Models.Actions;
@@ -16,7 +17,7 @@ namespace OriginsOfDestiny.Models.CallbackQueryHandlers;
 
 public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
 {
-    private static readonly ResourceHelper<HeroActions> ResourceHelper = new();
+
     public async Task Handle(IGameData gameData, CallbackQuery callbackQuery)
     {
         var actionCode = callbackQuery.Data.Split('_')[0];
@@ -41,7 +42,7 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
             {
                 await UseStream(gameData, stream);
             }
-            else if(item is Duplo duplo)
+            else if(item is Hollow duplo)
             {
                 await UseDuplo(gameData, duplo);
             }
@@ -80,10 +81,10 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
             );
     }
 
-    private static async Task UseDuplo(IGameData gameData, Duplo duplo)
+    private static async Task UseDuplo(IGameData gameData, Hollow duplo)
     {
         string reply;
-        var duploResourceHelper = new ResourceHelper<Duplo>();
+        var duploResourceHelper = new ResourceHelper<Hollow>();
 
         if (new Random().NextDouble() > duplo.Probability)
         {
@@ -96,10 +97,10 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
                 foreach ( var item in duplo.Loot ) { 
                     sb.AppendLine($"\t{item.Name}");
 
-                    var heroInventory = gameData.ClientData.PlayerContext.Hero.Inventory as HashSet<Item>;
+                    var heroInventory = gameData.ClientData.PlayerContext.Hero.Inventory as HashSet<IItem>;
                     heroInventory.Add(item);
                 }
-                (duplo.Loot as HashSet<Item>).Clear();
+                (duplo.Loot as HashSet<IItem>).Clear();
 
                 reply = sb.ToString();
             }
