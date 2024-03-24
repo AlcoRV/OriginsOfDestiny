@@ -1,6 +1,6 @@
-﻿namespace OriginsOfDestiny.Data.Enums;
+﻿namespace OriginsOfDestiny.DataObjects.Enums;
 
 public enum Element
 {
-    Fire, Water, Earth, Wind
+    None, Fire, Water, Earth, Wind
 }

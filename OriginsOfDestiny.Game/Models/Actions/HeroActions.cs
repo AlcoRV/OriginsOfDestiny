@@ -30,7 +30,7 @@ namespace OriginsOfDestiny.Game.Models.Actions
             sb.AppendLine(ResourceHelper.GetValue(GConstants.Messages.Out.WeSee));
             foreach (var iItem in area.InteractiveItems)
             {
-                sb.AppendLine("\t" + iItem.Name);
+                sb.AppendLine("🔹 " + iItem.Name);
             }
             var textMessage = sb.ToString();
 

@@ -2,13 +2,10 @@
 using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Data.Constants;
-using OriginsOfDestiny.Data.Models.Effects;
-using OriginsOfDestiny.Data.Models.Items;
 using OriginsOfDestiny.Data.Models.Items.InteractiveItems;
 using OriginsOfDestiny.DataObjects.Interfaces.Items;
 using OriginsOfDestiny.Game.Constants;
 using OriginsOfDestiny.Game.Extentions;
-using OriginsOfDestiny.Game.Models.Actions;
 using System.Text;
 using Telegram.Bot.Types;
 using Stream = OriginsOfDestiny.Data.Models.Items.InteractiveItems.Stream;
@@ -42,9 +39,9 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
             {
                 await UseStream(gameData, stream);
             }
-            else if(item is Hollow duplo)
+            else if(item is Hollow hollow)
             {
-                await UseDuplo(gameData, duplo);
+                await UseHollow(gameData, hollow);
             }
         }
     }
@@ -55,25 +52,32 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
         var streamResourceHelper = new ResourceHelper<Stream>();
 
         var resultCode = "";
-        Effect effect = null;
+        int health;
 
         if (new Random().NextDouble() > stream.Probability)
         {
-            resultCode = DConstants.Messages.Effects.Positive;
-            effect = stream.PositiveEffect;
+            resultCode = Stream.Messages.HealTo;
+            health = stream.Heal.Value;
+
+            if((gameData.ClientData.PlayerContext.Hero.HP + health) > gameData.ClientData.PlayerContext.Hero.MaxHP)
+            {
+                health = (gameData.ClientData.PlayerContext.Hero.HP + health) - gameData.ClientData.PlayerContext.Hero.MaxHP;
+            }
+
+            stream.HealTo(gameData.ClientData.PlayerContext.Hero);
         }
         else
         {
-            resultCode = DConstants.Messages.Effects.Negative;
-            effect = stream.NegativeEffect;
+            resultCode = Stream.Messages.DamageTo;
+            health = stream.Damage.Value;
+
+            stream.DamageTo(gameData.ClientData.PlayerContext.Hero);
         }
 
         reply = string.Format(
             streamResourceHelper.GetValue(resultCode),
-            Math.Abs(effect.Health)
+            health
             );
-
-        gameData.ClientData.PlayerContext.Hero.HP += effect.Health;
 
         await gameData.ClientData.EditMainMessageAsync(
             caption: reply,
@@ -81,38 +85,39 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
             );
     }
 
-    private static async Task UseDuplo(IGameData gameData, Hollow duplo)
+    private static async Task UseHollow(IGameData gameData, Hollow hollow)
     {
         string reply;
         var duploResourceHelper = new ResourceHelper<Hollow>();
 
-        if (new Random().NextDouble() > duplo.Probability)
+        if (new Random().NextDouble() > hollow.Probability)
         {
-            if(duplo.Loot == null) { return; }
-            if (!duplo.Loot.Any()) { reply = duploResourceHelper.GetValue(DConstants.Messages.Out.NotFound); }
+            if(hollow.Loot == null) { return; }
+            if (!hollow.Loot.Any()) { reply = duploResourceHelper.GetValue(DConstants.Messages.Out.NotFound); }
             else
             {
                 var sb = new StringBuilder();
                 sb.AppendLine(duploResourceHelper.GetValue(DConstants.Messages.Out.Found));
-                foreach ( var item in duplo.Loot ) { 
-                    sb.AppendLine($"\t{item.Name}");
+                foreach ( var item in hollow.Loot ) { 
+                    sb.AppendLine($"🔹 {item.Name}");
 
                     var heroInventory = gameData.ClientData.PlayerContext.Hero.Inventory as HashSet<IItem>;
                     heroInventory.Add(item);
                 }
-                (duplo.Loot as HashSet<IItem>).Clear();
+                (hollow.Loot as HashSet<IItem>).Clear();
 
                 reply = sb.ToString();
             }
         }
         else
         {
-            reply = string.Format(
-                duploResourceHelper.GetValue(DConstants.Messages.Effects.Negative),
-                Math.Abs(duplo.NegativeEffect.Health)
-            );
+            var damage = hollow.Damage.Value;
+            hollow.DamageTo(gameData.ClientData.PlayerContext.Hero);
 
-            gameData.ClientData.PlayerContext.Hero.HP += duplo.NegativeEffect.Health;
+            reply = string.Format(
+                duploResourceHelper.GetValue(Hollow.Messages.DamageTo),
+                damage
+            );
         }
 
         await gameData.ClientData.EditMainMessageAsync(

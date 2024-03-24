@@ -3,9 +3,8 @@ using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Common.Models.WaitingFor;
 using OriginsOfDestiny.Common.UI;
-using OriginsOfDestiny.Data.Enums;
+using OriginsOfDestiny.DataObjects.Enums;
 using OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message;
-using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 

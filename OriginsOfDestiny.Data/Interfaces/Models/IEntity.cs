@@ -1,4 +1,7 @@
-﻿using OriginsOfDestiny.Data.Enums;
+﻿using OriginsOfDestiny.DataObjects.Enums;
+using OriginsOfDestiny.DataObjects.Interfaces.Influences;
+using OriginsOfDestiny.DataObjects.Models.Influences;
+
 
 namespace OriginsOfDestiny.DataObjects.Interfaces.Models
 {
@@ -6,5 +9,6 @@ namespace OriginsOfDestiny.DataObjects.Interfaces.Models
     {
         public string Name { get; set; }
         public Gender Gender { get; set; }
+        //public Influences Influences { get; set; }
     }
 }

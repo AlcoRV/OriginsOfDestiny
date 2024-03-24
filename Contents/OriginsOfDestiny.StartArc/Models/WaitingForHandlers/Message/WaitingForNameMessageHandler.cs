@@ -1,18 +1,14 @@
 ﻿using OriginsOfDestiny.Common.Helpers;
-using OriginsOfDestiny.Common.Managers;
-using OriginsOfDestiny.Common.Models.Storage;
 using OriginsOfDestiny.Common.Models.WaitingFor;
-using OriginsOfDestiny.Data.Enums;
+using OriginsOfDestiny.DataObjects.Enums;
 using OriginsOfDestiny.DataObjects.Models.Entity;
 using OriginsOfDestiny.Game.Models.Actions;
 using Telegram.Bot;
-using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
 {
     using static OriginsOfDestiny.StartArc.Constants.Constants.Messages;
-    using GameConstants = Data.Constants.DConstants;
 
     public class WaitingForNameMessageHandler : WaitingForBaseMessageHandler
     {

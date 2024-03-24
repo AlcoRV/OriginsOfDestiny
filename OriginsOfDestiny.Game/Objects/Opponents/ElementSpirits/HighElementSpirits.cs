@@ -8,7 +8,7 @@ namespace OriginsOfDestiny.Game.Objects.Opponents.ElementSpirits
         public static readonly HighElementSpirit Simon = new()
         {
             Name = "SIMON",
-            Gender = Data.Enums.Gender.Man,
+            Gender = Gender.Man,
             Picture = "Characters/simon.jpg",
             Attitude = Attitude.Friendly
         };

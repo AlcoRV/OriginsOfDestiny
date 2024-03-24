@@ -1,4 +1,4 @@
-﻿namespace OriginsOfDestiny.Data.Enums;
+﻿namespace OriginsOfDestiny.DataObjects.Enums;
 
 public enum Gender
 {

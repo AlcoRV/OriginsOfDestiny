@@ -2,6 +2,7 @@
 using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Common.UI;
+using OriginsOfDestiny.DataObjects.Models.Entity;
 using OriginsOfDestiny.Game.Objects.Opponents.ElementSpirits;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
@@ -25,6 +26,7 @@ namespace OriginsOfDestiny.StartArc.Models.MessageHandlers
             gameData.ClientData.DefaultMessageHandler = new SimonStartDefaultMessageHandler();
             gameData.ClientData.PlayerContext.Area = TemporaryTestData.TemporaryTestData.DownEAForest;
             gameData.ClientData.PlayerContext.Opponent = HighElementSpirits.Simon;
+            gameData.ClientData.PlayerContext.Hero = new Hero();
 
             await gameData.ClientData.SendMessageAsync(resourceHelper.GetValue(ArcConstants.Messages.SimonStart.Out.WokeUp));
 
