@@ -118,9 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CRITICAL" xml:space="preserve">
-    <value>💔 Критическое состояние</value>
+    <value>💔 Критическое состояние ({0} ед.)</value>
+  </data>
+  <data name="DEAD" xml:space="preserve">
+    <value>Погиб, так ничего и не сделав...</value>
   </data>
   <data name="HEALTH" xml:space="preserve">
-    <value>{0} {1}% здоровья</value>
+    <value>{0} {1}% здоровья ({2} ед.)</value>
   </data>
 </root>

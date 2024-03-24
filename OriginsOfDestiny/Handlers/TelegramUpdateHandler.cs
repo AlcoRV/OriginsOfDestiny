@@ -32,6 +32,8 @@ public class TelegramUpdateHandler : ITelegramUpdateHandler
 
         if (update.Type == Telegram.Bot.Types.Enums.UpdateType.CallbackQuery)
         {
+            if (!gameData.ClientData.AvailablesCodes.Contains(update.CallbackQuery!.Data)) { return; }
+
             await manager.GetCallbackQueryHandler(update.CallbackQuery!.Data!).Handle(gameData, update.CallbackQuery);
             gameData.ClientData.LastCode = update.CallbackQuery.Data;
         }

@@ -100,20 +100,15 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
             await GameData.ClientData.SendMessageAsync(
                     string.Format(_resourceHelper.GetValue(SimonStart.Out.Disappear)));
 
-            using var fileStream = new FileManager().GetFileStream(GameConstants.Files.Pictures.Locations.EAForest);
+            GameData.ClientData.Clear();
+            GameData.ClientData.PlayerContext.Opponent = null;
 
-            var answer = await GameData.ClientData.BotClient.SendPhotoAsync(
-                    chatId: message.Chat.Id,
-                    photo: new InputFileStream(fileStream),
+            await GameData.ClientData.SendPhotoAsync(
                     caption: _resourceHelper.GetValue(SimonStart.Out.EAF),
                     replyMarkup: new InlineKeyboardMarkup(
                         (HeroActions.GetBaseActions())
                         .Chunk(1))
                     );
-
-            GameData.ClientData.Clear();
-            GameData.ClientData.MainMessage = answer;
-            GameData.ClientData.PlayerContext.Opponent = null;
         }
     }
 }

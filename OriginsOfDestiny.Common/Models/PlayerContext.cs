@@ -17,37 +17,39 @@ public class PlayerContext : IPlayerContext
     public string GetHeroHealth()
     {
         var resourceHelper = new ResourceHelper<PlayerContext>();
-
         int percentageHealth = (int)((Hero.HP * 1.0) / Hero.MaxHP * 100);
+        string emoji;
 
-        if(percentageHealth == 100)
+        switch (percentageHealth)
         {
-            return string.Format(resourceHelper.GetValue(Constants.Health), "😃", percentageHealth);
+            case int n when n == 100:
+                emoji = "😃";
+                break;
+            case int n when n > 75:
+                emoji = "🙂";
+                break;
+            case int n when n > 50:
+                emoji = "😐";
+                break;
+            case int n when n > 25:
+                emoji = "😕";
+                break;
+            case int n when n > 10:
+                emoji = "😫";
+                break;
+            case int n when n > 5:
+                emoji = "💀";
+                break;
+            default:
+                return string.Format(resourceHelper.GetValue(Constants.Critical), Hero.HP);
         }
-        else if (percentageHealth > 75)
-        {
-            return string.Format(resourceHelper.GetValue(Constants.Health), "🙂", percentageHealth);
-        }
-        else if (percentageHealth > 50)
-        {
-            return string.Format(resourceHelper.GetValue(Constants.Health), "😐", percentageHealth);
-        }
-        else if (percentageHealth > 25)
-        {
-            return string.Format(resourceHelper.GetValue(Constants.Health), "😕", percentageHealth);
-        }
-        else if (percentageHealth > 10)
-        {
-            return string.Format(resourceHelper.GetValue(Constants.Health), "😫", percentageHealth);
-        }
-        else if (percentageHealth > 5)
-        {
-            return string.Format(resourceHelper.GetValue(Constants.Health), "💀", percentageHealth);
-        }
-        else
-        {
-            return resourceHelper.GetValue(Constants.Critical);
-        }
+
+        return string.Format(resourceHelper.GetValue(Constants.Health), emoji, percentageHealth, Hero.HP);
+    }
+
+    public static class Messages
+    {
+        public static readonly string Dead = "DEAD";
     }
 
     private static class Constants

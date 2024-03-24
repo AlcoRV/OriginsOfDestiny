@@ -1,4 +1,5 @@
-﻿using OriginsOfDestiny.Common.Interfaces.Handlers;
+﻿using OriginsOfDestiny.Common.Helpers;
+using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Common.Managers;
 using OriginsOfDestiny.Common.Models.WaitingFor;
@@ -25,13 +26,24 @@ public class ClientData : IClientData
     public void Clear()
     {
         WaitingForMessage = null;
-        (AvailablesCodes as HashSet<string>).Clear();
         DefaultMessageHandler = null;
         (RiddenMessagesCodes as HashSet<string>).Clear();
     }
 
     public async Task EditMainMessageAsync(Message message = null, string caption = null, InlineKeyboardMarkup replyMarkup = null)
     {
+        if(PlayerContext.Hero.HP <= 0)
+        {
+            caption = new ResourceHelper<PlayerContext>().GetValue(Models.PlayerContext.Messages.Dead);
+            replyMarkup = null;
+            AvailablesCodes = new HashSet<string>();
+        }
+
+        if (replyMarkup != null)
+        {
+            AvailablesCodes = replyMarkup.InlineKeyboard.SelectMany(el => el.Select(el => el.CallbackData ?? ""));
+        }
+
         MainMessage = await BotClient.EditMessageCaptionAsync(Id,
                  messageId: message == null ? MainMessage.MessageId : message.MessageId,
                  caption: caption == null ? MainMessage.Text : GetCaption(caption),
@@ -58,6 +70,8 @@ public class ClientData : IClientData
 
     public async Task SendPhotoAsync(string caption, InlineKeyboardMarkup replyMarkup = null)
     {
+        AvailablesCodes = replyMarkup.InlineKeyboard.SelectMany(el => el.Select(el => el.CallbackData ?? ""));
+
         var picture = PlayerContext.Opponent != null
             ? PlayerContext.Opponent.Picture
             : PlayerContext.Area.Picture;
