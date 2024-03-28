@@ -40,16 +40,19 @@ public class PlayerContext : IPlayerContext
             case int n when n > 5:
                 emoji = "💀";
                 break;
+            case int n when n == 0:
+                emoji = "🪦";
+                break;
             default:
                 return string.Format(resourceHelper.GetValue(Constants.Critical), Hero.HP);
         }
 
-        return string.Format(resourceHelper.GetValue(Constants.Health), emoji, percentageHealth, Hero.HP);
+        return string.Format(resourceHelper.GetValue(Hero.HP > 0 ? Constants.Health : Messages.Dead + new Random().Next(1, 6)), emoji, percentageHealth, Hero.HP);
     }
 
-    public static class Messages
+    private static class Messages
     {
-        public static readonly string Dead = "DEAD";
+        public static string Dead => "DEAD";
     }
 
     private static class Constants

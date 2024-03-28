@@ -118,11 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DAMAGETO" xml:space="preserve">
-    <value>Не стоило сюда заглядывать, дупло имеет зубы.
+    <value>🩸 Не стоило сюда заглядывать, дупло имеет зубы.
 Откушано {0} здоровья.</value>
   </data>
   <data name="FOUND" xml:space="preserve">
     <value>Вы нашли:</value>
+  </data>
+  <data name="KILL" xml:space="preserve">
+    <value>🪦 Наверное, твоя голова была вкусной, если тебя укусило даже дупло дерева.</value>
   </data>
   <data name="NOTFOUND" xml:space="preserve">
     <value>Там пусто 🙁</value>

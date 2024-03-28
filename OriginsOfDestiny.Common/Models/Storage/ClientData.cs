@@ -5,6 +5,7 @@ using OriginsOfDestiny.Common.Managers;
 using OriginsOfDestiny.Common.Models.WaitingFor;
 using OriginsOfDestiny.DataObjects.Enums;
 using Telegram.Bot;
+using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 
@@ -32,9 +33,8 @@ public class ClientData : IClientData
 
     public async Task EditMainMessageAsync(Message message = null, string caption = null, InlineKeyboardMarkup replyMarkup = null)
     {
-        if(PlayerContext.Hero.HP <= 0)
+        if(PlayerContext.Hero.HP == 0)
         {
-            caption = new ResourceHelper<PlayerContext>().GetValue(Models.PlayerContext.Messages.Dead);
             replyMarkup = null;
             AvailablesCodes = new HashSet<string>();
         }
@@ -44,11 +44,30 @@ public class ClientData : IClientData
             AvailablesCodes = replyMarkup.InlineKeyboard.SelectMany(el => el.Select(el => el.CallbackData ?? ""));
         }
 
-        MainMessage = await BotClient.EditMessageCaptionAsync(Id,
-                 messageId: message == null ? MainMessage.MessageId : message.MessageId,
-                 caption: caption == null ? MainMessage.Text : GetCaption(caption),
-                 replyMarkup: replyMarkup
-                );
+        try
+        {
+
+            MainMessage = await BotClient.EditMessageCaptionAsync(Id,
+                     messageId: message == null ? MainMessage.MessageId : message.MessageId,
+                     caption: caption == null ? MainMessage.Text : GetCaption(caption),
+                     replyMarkup: replyMarkup
+                    );
+
+        }
+        catch(ApiRequestException e)
+        {
+            var resourceHelper = new ResourceHelper<ClientData>();
+
+            caption = $"{(caption == null ? MainMessage.Text : GetCaption(caption))}\n" +
+            $"{resourceHelper.GetValue("API_REQUEST_EXCEPTION")}";
+
+            Thread.Sleep(200);
+            MainMessage = await BotClient.EditMessageCaptionAsync(Id,
+                     messageId: message == null ? MainMessage.MessageId : message.MessageId,
+                     caption:  caption,
+                     replyMarkup: replyMarkup
+                    );
+        }
     }
 
     public async Task SendMessageAsync(string message, bool restartButton = false)

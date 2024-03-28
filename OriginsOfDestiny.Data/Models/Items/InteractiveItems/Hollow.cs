@@ -14,12 +14,7 @@ public class Hollow : IInteractiveItem, IDamageTo
     public double Probability { get; set; } = 0.5;
     public IEnumerable<IItem> Loot { get; set; }
 
-    public Damage Damage => new()
-    {
-        Element = Element.Earth,
-        Min = 15,
-        Max = 30
-    };
+    public Damage Damage => new(15, 30, Element.Earth);
 
     public bool DamageTo(IMortal mortal)
     {
@@ -28,6 +23,7 @@ public class Hollow : IInteractiveItem, IDamageTo
 
     public static class Messages
     {
+        public static readonly string Kill = "KILL";
         public static readonly string DamageTo = "DAMAGETO";
     }
 }

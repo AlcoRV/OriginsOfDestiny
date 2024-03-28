@@ -16,8 +16,8 @@ namespace OriginsOfDestiny.DataObjects.Models.Entity
         public string Name { get; set; }
         public IEnumerable<IItem> Inventory { get; set; } = new HashSet<IItem>();
         public Influences Influences { get; set; } = new Influences() { };
-
         public Damage Damage => new Damage();
+        public string KillMessage { get; set; }
 
         public bool DamageTo(IMortal mortal)
         {
@@ -38,11 +38,16 @@ namespace OriginsOfDestiny.DataObjects.Models.Entity
             }
         }
 
-        public void GetHealing(Heal heal)
+        public bool GetHealing(Heal heal)
         {
             HP += (int)(heal.Value * Influences.Effects[heal.Element]);
 
-            if (HP >= MaxHP) { HP = MaxHP; }
+            if (HP >= MaxHP) { 
+                HP = MaxHP;
+                return true;
+            }
+
+            return false;
         }
     }
 }

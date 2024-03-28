@@ -4,7 +4,6 @@ using OriginsOfDestiny.Data.Models.Items.InteractiveItems;
 using System.Text;
 using Telegram.Bot.Types.ReplyMarkups;
 using Stream = OriginsOfDestiny.Data.Models.Items.InteractiveItems.Stream;
-using Telegram.Bot;
 using DConstants = OriginsOfDestiny.Data.Constants.DConstants;
 using OriginsOfDestiny.Game.Constants;
 

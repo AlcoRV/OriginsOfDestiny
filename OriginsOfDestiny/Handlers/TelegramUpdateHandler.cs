@@ -4,6 +4,7 @@ using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Common.Models.Storage;
 using OriginsOfDestiny.Selectors;
 using OriginsOfDestiny.StartArc.Models.MessageHandlers;
+using OriginsOfDestiny.StartArc.TemporaryTestData;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -47,11 +48,16 @@ public class TelegramUpdateHandler : ITelegramUpdateHandler
             return;
         }
 
-        if (!string.IsNullOrWhiteSpace(message.Text)
-            && (message.Text.Equals("/start", StringComparison.OrdinalIgnoreCase)
-                || message.Text.Equals("/restart", StringComparison.OrdinalIgnoreCase)))
+        if (string.IsNullOrWhiteSpace(message.Text)) { return; }
+
+        if (message.Text.Equals("/start", StringComparison.OrdinalIgnoreCase)
+                || message.Text.Equals("/restart", StringComparison.OrdinalIgnoreCase))
         {
             await new StartMessageHandler().Handle(gameData, message);
+        }
+        else if(message.Text.Equals("/test", StringComparison.OrdinalIgnoreCase))
+        {
+            await new TestMessageHandler().Handle(gameData, message);
         }
         else if (gameData.ClientData.DefaultMessageHandler != null)
         {
@@ -69,6 +75,16 @@ public class TelegramUpdateHandler : ITelegramUpdateHandler
         }
         gameData.ClientData = clientData;
 
+        ChangeDataForTest(gameData);
+
         return gameData;
+    }
+
+    private void ChangeDataForTest(IGameData gameData)
+    {
+        gameData.ClientData.PlayerContext.Hero.HP = 100;
+        gameData.ClientData.PlayerContext.Hero.MaxHP = 100;
+
+        gameData.ClientData.PlayerContext.Area = TemporaryTestData.DownEAForest;
     }
 }

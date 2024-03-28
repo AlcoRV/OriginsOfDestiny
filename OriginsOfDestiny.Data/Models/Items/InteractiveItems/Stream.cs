@@ -11,31 +11,22 @@ public class Stream : IInteractiveItem, IDamageTo, IHealTo
     public Guid Id { get; set; } = Guid.NewGuid();
     public string Name { get; set; }
     public double Probability { get; set; } = 0.5;
-    public Damage Damage { get; } = new()
-    {
-        Element = Element.Water,
-        Min = 15,
-        Max = 25
-    };
-    public Heal Heal { get; } = new Heal()
-    {
-        Element = Element.Water,
-        Min = 15,
-        Max = 200
-    };
+    public Damage Damage { get; } = new(15, 25, Element.Water);
+    public Heal Heal { get; } = new Heal(15, 200, Element.Water);
 
     public bool DamageTo(IMortal mortal)
     {
         return mortal.GetDamage(Damage);
     }
 
-    public void HealTo(IMortal mortal)
+    public bool HealTo(IMortal mortal)
     {
-        mortal.GetHealing(Heal);
+        return mortal.GetHealing(Heal);
     }
 
     public static class Messages
     {
+        public static readonly string Kill = "KILL";
         public static readonly string DamageTo = "DAMAGETO";
         public static readonly string HealTo = "HEALING";
     }

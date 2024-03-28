@@ -6,6 +6,11 @@ namespace OriginsOfDestiny.DataObjects.Interfaces.Influences
     public interface IHealTo
     {
         public Heal Heal { get; }
-        public void HealTo(IMortal mortal);
+        /// <summary>
+        ///     To heal
+        /// </summary>
+        /// <param name="mortal"></param>
+        /// <returns>true, if healed full</returns>
+        public bool HealTo(IMortal mortal);
     }
 }

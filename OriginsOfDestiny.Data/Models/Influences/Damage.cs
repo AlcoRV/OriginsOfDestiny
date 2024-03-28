@@ -2,11 +2,15 @@
 
 namespace OriginsOfDestiny.DataObjects.Models.Influences
 {
-    public struct Damage
+    public readonly struct Damage
     {
-        public Element Element { get; set; }
-        public int Min { get; set; }
-        public int Max { get; set; }
-        public readonly int Value => new Random().Next(Min, Max);
+        public Damage(int min, int max, Element element = Element.None) {
+            Element = element;
+
+            Value = new Random().Next(min, max);
+        }
+
+        public Element Element { init; get; }
+        public int Value { init; get; }
     }
 }

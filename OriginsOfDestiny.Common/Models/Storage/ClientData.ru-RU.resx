@@ -117,17 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DAMAGETO" xml:space="preserve">
-    <value>🩸 Вас укусила редкая ядовитая пиявка, вы потеряли {0} здоровья и чувство собственного достоинства.
-Почему так много?! </value>
-  </data>
-  <data name="HEALING" xml:space="preserve">
-    <value>❤️‍🩹 Вы освежились и восполнили {0} здоровья</value>
-  </data>
-  <data name="KILL" xml:space="preserve">
-    <value>🪦 Пиявки выпили твои глаза и душу. Быть может, в следующей жизни повезёт больше.</value>
-  </data>
-  <data name="USE" xml:space="preserve">
-    <value>Умыться и попить</value>
+  <data name="API_REQUEST_EXCEPTION" xml:space="preserve">
+    <value>(Слишком частые клики могут вызвать гнев духов 🙃)</value>
   </data>
 </root>

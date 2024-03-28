@@ -48,30 +48,31 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
 
     private static async Task UseStream(IGameData gameData, Stream stream)
     {
-        string reply;
+        var reply = "";
         var streamResourceHelper = new ResourceHelper<Stream>();
-
-        var resultCode = "";
         int health;
 
+        string resultCode;
         if (new Random().NextDouble() > stream.Probability)
         {
-            resultCode = Stream.Messages.HealTo;
-            health = stream.Heal.Value;
-
-            if((gameData.ClientData.PlayerContext.Hero.HP + health) > gameData.ClientData.PlayerContext.Hero.MaxHP)
-            {
-                health = (gameData.ClientData.PlayerContext.Hero.HP + health) - gameData.ClientData.PlayerContext.Hero.MaxHP;
-            }
+            resultCode = Stream.Messages.HealTo; 
+            var startHealth = gameData.ClientData.PlayerContext.Hero.HP;
 
             stream.HealTo(gameData.ClientData.PlayerContext.Hero);
+            health = gameData.ClientData.PlayerContext.Hero.HP - startHealth;
         }
         else
         {
-            resultCode = Stream.Messages.DamageTo;
             health = stream.Damage.Value;
 
-            stream.DamageTo(gameData.ClientData.PlayerContext.Hero);
+            if (stream.DamageTo(gameData.ClientData.PlayerContext.Hero))
+            {
+                resultCode = Stream.Messages.Kill;
+            }
+            else
+            {
+                resultCode = Stream.Messages.DamageTo;
+            }
         }
 
         reply = string.Format(
@@ -80,7 +81,7 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
             );
 
         await gameData.ClientData.EditMainMessageAsync(
-            caption: reply,
+            caption: reply.ToString(),
             replyMarkup: gameData.ClientData.MainMessage.ReplyMarkup
             );
     }
@@ -88,16 +89,16 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
     private static async Task UseHollow(IGameData gameData, Hollow hollow)
     {
         string reply;
-        var duploResourceHelper = new ResourceHelper<Hollow>();
+        var hollowResourceHelper = new ResourceHelper<Hollow>();
 
         if (new Random().NextDouble() > hollow.Probability)
         {
             if(hollow.Loot == null) { return; }
-            if (!hollow.Loot.Any()) { reply = duploResourceHelper.GetValue(DConstants.Messages.Out.NotFound); }
+            if (!hollow.Loot.Any()) { reply = hollowResourceHelper.GetValue(DConstants.Messages.Out.NotFound); }
             else
             {
                 var sb = new StringBuilder();
-                sb.AppendLine(duploResourceHelper.GetValue(DConstants.Messages.Out.Found));
+                sb.AppendLine(hollowResourceHelper.GetValue(DConstants.Messages.Out.Found));
                 foreach ( var item in hollow.Loot ) { 
                     sb.AppendLine($"🔹 {item.Name}");
 
@@ -112,12 +113,17 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
         else
         {
             var damage = hollow.Damage.Value;
-            hollow.DamageTo(gameData.ClientData.PlayerContext.Hero);
-
-            reply = string.Format(
-                duploResourceHelper.GetValue(Hollow.Messages.DamageTo),
-                damage
-            );
+            if (hollow.DamageTo(gameData.ClientData.PlayerContext.Hero))
+            {
+                reply = hollowResourceHelper.GetValue(Hollow.Messages.Kill);
+            }
+            else
+            {
+                reply = string.Format(
+                    hollowResourceHelper.GetValue(Hollow.Messages.DamageTo),
+                    damage
+                );
+            }
         }
 
         await gameData.ClientData.EditMainMessageAsync(
