@@ -16,8 +16,9 @@ namespace OriginsOfDestiny.DataObjects.Models.Entity
         public string Name { get; set; }
         public IEnumerable<IItem> Inventory { get; set; } = new HashSet<IItem>();
         public Influences Influences { get; set; } = new Influences() { };
-        public Damage Damage => new Damage();
+        public Damage Damage => new();
         public string KillMessage { get; set; }
+        public Element Element { get; set; }
 
         public bool DamageTo(IMortal mortal)
         {

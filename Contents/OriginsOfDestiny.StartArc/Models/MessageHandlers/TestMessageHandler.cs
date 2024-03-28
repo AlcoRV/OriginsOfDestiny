@@ -15,10 +15,8 @@ public class TestMessageHandler : IMessageHandler
     public async Task Handle(IGameData gameData, Message message)
     {
         await gameData.ClientData.SendPhotoAsync(
-        caption: _resourceHelper.GetValue(SimonStart.Out.EAF),
-        replyMarkup: new InlineKeyboardMarkup(
-            (HeroActions.GetBaseActions())
-            .Chunk(1))
+            caption: _resourceHelper.GetValue(SimonStart.Out.EAF),
+            replyMarkup: new InlineKeyboardMarkup(HeroActions.GetBaseActions())
         );
     }
 }

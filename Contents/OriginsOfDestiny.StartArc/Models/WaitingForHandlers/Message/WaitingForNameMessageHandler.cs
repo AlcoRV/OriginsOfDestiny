@@ -101,9 +101,7 @@ namespace OriginsOfDestiny.StartArc.Models.WaitingForHandlers.Message
 
             await GameData.ClientData.SendPhotoAsync(
                     caption: _resourceHelper.GetValue(SimonStart.Out.EAF),
-                    replyMarkup: new InlineKeyboardMarkup(
-                        (HeroActions.GetBaseActions())
-                        .Chunk(1))
+                    replyMarkup: new InlineKeyboardMarkup(HeroActions.GetBaseActions())
                     );
         }
     }

@@ -117,10 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ABOUTPLAYER" xml:space="preserve">
+    <value>👤</value>
+  </data>
+  <data name="EARTH" xml:space="preserve">
+    <value>🪨 Земля</value>
+  </data>
+  <data name="ELEMENT" xml:space="preserve">
+    <value>💩 Быть без стихии в наше время не позорно)</value>
+  </data>
+  <data name="FIRE" xml:space="preserve">
+    <value>🔥 Огонь</value>
+  </data>
+  <data name="HEROGENDER_M" xml:space="preserve">
+    <value>Пол героя: Мужской</value>
+  </data>
+  <data name="HEROGENDER_W" xml:space="preserve">
+    <value>Пол героя: Женский</value>
+  </data>
+  <data name="HERONAME" xml:space="preserve">
+    <value>Имя героя: {0}</value>
+  </data>
   <data name="LOOKAROUND" xml:space="preserve">
     <value>Оглядеться</value>
   </data>
+  <data name="MARRIED_M" xml:space="preserve">
+    <value>Не женат</value>
+  </data>
+  <data name="MARRIED_W" xml:space="preserve">
+    <value>Не замужем</value>
+  </data>
+  <data name="PERSONALITY" xml:space="preserve">
+    <value>Характер скверный (хотя, посмотрим)</value>
+  </data>
+  <data name="QUESTS" xml:space="preserve">
+    <value>⁉️</value>
+  </data>
+  <data name="WATER" xml:space="preserve">
+    <value>💧 Вода</value>
+  </data>
   <data name="WESEE" xml:space="preserve">
     <value>Вы видите:</value>
+  </data>
+  <data name="WIND" xml:space="preserve">
+    <value>🌪 Воздух</value>
   </data>
 </root>
