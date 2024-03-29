@@ -75,15 +75,20 @@ public class TelegramUpdateHandler : ITelegramUpdateHandler
         }
         gameData.ClientData = clientData;
 
-        ChangeDataForTest(gameData);
+        //ChangeDataForTest(gameData);
 
         return gameData;
     }
 
-    private void ChangeDataForTest(IGameData gameData)
+    private static void ChangeDataForTest(IGameData gameData)
     {
+        gameData.ClientData.PlayerContext.Hero.Name = "Alex";
+        gameData.ClientData.PlayerContext.Hero.Gender = DataObjects.Enums.Gender.Man;
         gameData.ClientData.PlayerContext.Hero.HP = 100;
         gameData.ClientData.PlayerContext.Hero.MaxHP = 100;
+        gameData.ClientData.PlayerContext.Hero.Element = DataObjects.Enums.Element.Fire;
+        gameData.ClientData.PlayerContext.Hero.Influences.Effects[DataObjects.Enums.Element.Fire] = 1.25;
+        gameData.ClientData.PlayerContext.Hero.Influences.Effects[DataObjects.Enums.Element.Water] = 0.75;
 
         gameData.ClientData.PlayerContext.Area = TemporaryTestData.DownEAForest;
     }

@@ -138,6 +138,21 @@
   <data name="HERONAME" xml:space="preserve">
     <value>Имя героя: {0}</value>
   </data>
+  <data name="INFEARTH" xml:space="preserve">
+    <value>земле</value>
+  </data>
+  <data name="INFFIRE" xml:space="preserve">
+    <value>огню</value>
+  </data>
+  <data name="INFLUENCES" xml:space="preserve">
+    <value>Влияние элементов:</value>
+  </data>
+  <data name="INFWATER" xml:space="preserve">
+    <value>воде</value>
+  </data>
+  <data name="INFWIND" xml:space="preserve">
+    <value>ветру</value>
+  </data>
   <data name="LOOKAROUND" xml:space="preserve">
     <value>Оглядеться</value>
   </data>
@@ -153,13 +168,22 @@
   <data name="QUESTS" xml:space="preserve">
     <value>⁉️</value>
   </data>
+  <data name="RESISTANCE" xml:space="preserve">
+    <value>сопротивление</value>
+  </data>
   <data name="WATER" xml:space="preserve">
     <value>💧 Вода</value>
+  </data>
+  <data name="WEAKNESS" xml:space="preserve">
+    <value>уязвимость к</value>
   </data>
   <data name="WESEE" xml:space="preserve">
     <value>Вы видите:</value>
   </data>
   <data name="WIND" xml:space="preserve">
     <value>🌪 Воздух</value>
+  </data>
+  <data name="WITHOUTINFLUENCE" xml:space="preserve">
+    <value>Без влияний</value>
   </data>
 </root>

@@ -96,6 +96,25 @@ namespace OriginsOfDestiny.Game.Models.Actions
                 ? Constants.Elements.Element
                 : hero.Element.ToString().ToUpper();
             sb.AppendLine(ResourceHelper.GetValue(element));
+            sb.AppendLine();
+
+            sb.AppendLine(ResourceHelper.GetValue(Constants.Hero.Influences.Name));
+            var elementsInfluence = hero.Influences.Effects.Where(e => e.Value != 1);
+            if(elementsInfluence.Any() )
+            {
+                foreach (var influence in elementsInfluence)
+                {
+                    var type = influence.Value > 1 ? Constants.Hero.Influences.Resistance : Constants.Hero.Influences.Weakness;
+                    var value = (int)Math.Abs((influence.Value - 1) * 100);
+
+                    sb.AppendLine($"🌀 {ResourceHelper.GetValue(type)} {ResourceHelper.GetValue("INF" + influence.Key.ToString().ToUpper())}: {value}%");
+                }
+            }
+            else
+            {
+                sb.AppendLine("🌀 " + ResourceHelper.GetValue(Constants.Hero.Influences.Without));
+            }
+
 
             await _gameData.ClientData.EditMainMessageAsync(
              caption: sb.ToString(),
@@ -138,6 +157,18 @@ namespace OriginsOfDestiny.Game.Models.Actions
                 public static readonly string Gender = "HEROGENDER";
                 public static readonly string Personality = "PERSONALITY";
                 public static readonly string Married = "MARRIED";
+                public static class Influences
+                {
+                    public static readonly string Name = "INFLUENCES";
+                    public static readonly string Without = "WITHOUTINFLUENCE";
+                    public static readonly string Weakness = "WEAKNESS";
+                    public static readonly string Resistance = "RESISTANCE";
+
+                    public static readonly string Fire = "INFFIRE";
+                    public static readonly string Water = "INFWATER";
+                    public static readonly string Wind = "INFWIND";
+                    public static readonly string Earth = "INFEARTH";
+                }
             }
 
             public static class Elements
