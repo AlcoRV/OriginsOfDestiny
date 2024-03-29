@@ -162,6 +162,9 @@
   <data name="MARRIED_W" xml:space="preserve">
     <value>Не замужем</value>
   </data>
+  <data name="NOTES" xml:space="preserve">
+    <value>📝</value>
+  </data>
   <data name="PERSONALITY" xml:space="preserve">
     <value>Характер скверный (хотя, посмотрим)</value>
   </data>

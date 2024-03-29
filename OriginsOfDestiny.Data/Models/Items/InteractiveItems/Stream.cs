@@ -4,7 +4,7 @@ using OriginsOfDestiny.DataObjects.Interfaces.InteractiveItems;
 using OriginsOfDestiny.DataObjects.Interfaces.Properties;
 using OriginsOfDestiny.DataObjects.Models.Influences;
 
-namespace OriginsOfDestiny.Data.Models.Items.InteractiveItems;
+namespace OriginsOfDestiny.DataObjects.Models.Items.InteractiveItems;
 
 public class Stream : IInteractiveItem, IDamageTo, IHealTo
 {

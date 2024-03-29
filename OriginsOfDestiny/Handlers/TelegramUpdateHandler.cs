@@ -2,6 +2,8 @@
 using OriginsOfDestiny.Common.Interfaces.Managers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Common.Models.Storage;
+using OriginsOfDestiny.DataObjects.Interfaces.Items;
+using OriginsOfDestiny.DataObjects.Models.Items.Pickups;
 using OriginsOfDestiny.Selectors;
 using OriginsOfDestiny.StartArc.Models.MessageHandlers;
 using OriginsOfDestiny.StartArc.TemporaryTestData;
@@ -75,7 +77,7 @@ public class TelegramUpdateHandler : ITelegramUpdateHandler
         }
         gameData.ClientData = clientData;
 
-        //ChangeDataForTest(gameData);
+        ChangeDataForTest(gameData);
 
         return gameData;
     }
@@ -89,6 +91,19 @@ public class TelegramUpdateHandler : ITelegramUpdateHandler
         gameData.ClientData.PlayerContext.Hero.Element = DataObjects.Enums.Element.Fire;
         gameData.ClientData.PlayerContext.Hero.Influences.Effects[DataObjects.Enums.Element.Fire] = 1.25;
         gameData.ClientData.PlayerContext.Hero.Influences.Effects[DataObjects.Enums.Element.Water] = 0.75;
+        var inventory = gameData.ClientData.PlayerContext.Hero.Inventory as HashSet<IItem>;
+        inventory.Add(new Note()
+        {
+            Name = "Таинственная записка 📜",
+            Description = "Какое-то описание странной записки. П.с. ОТ ДРУГА",
+            Empty = false
+        });
+        inventory.Add(new Note()
+        {
+            Name = "Бумага 📜",
+            Description = "",
+            Empty = true
+        });
 
         gameData.ClientData.PlayerContext.Area = TemporaryTestData.DownEAForest;
     }

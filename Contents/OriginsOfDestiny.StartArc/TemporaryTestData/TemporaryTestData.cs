@@ -3,8 +3,7 @@ using OriginsOfDestiny.Data.Models.Locations;
 using OriginsOfDestiny.DataObjects.Interfaces.InteractiveItems;
 using OriginsOfDestiny.DataObjects.Interfaces.Items;
 using OriginsOfDestiny.DataObjects.Models.Items.Pickups;
-using static OriginsOfDestiny.Data.Constants.DConstants.Files.Pictures;
-using Stream = OriginsOfDestiny.Data.Models.Items.InteractiveItems.Stream;
+using Stream = OriginsOfDestiny.DataObjects.Models.Items.InteractiveItems.Stream;
 
 namespace OriginsOfDestiny.StartArc.TemporaryTestData
 {
@@ -13,7 +12,8 @@ namespace OriginsOfDestiny.StartArc.TemporaryTestData
         public static readonly Note StrangeNote = new()
         {
             Name = "Таинственная записка 📜",
-            Description = "Какое-то описание странной записки. П.с. ОТ ДРУГА"
+            Description = "Какое-то описание странной записки. П.с. ОТ ДРУГА",
+            Empty = false
         };
 
         public static readonly Stream StrangeStream = new() { Name = "Серебристый ручей" };

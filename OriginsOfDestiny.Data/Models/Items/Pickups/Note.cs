@@ -10,5 +10,6 @@ namespace OriginsOfDestiny.DataObjects.Models.Items.Pickups
         public int Volume { get; set; } = 0;
         public int Cost { get; set; } = 0;
         public string Description { get; set; }
+        public bool Empty { get; set; } = true;
     }
 }

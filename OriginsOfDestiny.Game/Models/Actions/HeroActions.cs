@@ -3,22 +3,26 @@ using OriginsOfDestiny.Common.Interfaces.Storages;
 using OriginsOfDestiny.Data.Models.Items.InteractiveItems;
 using System.Text;
 using Telegram.Bot.Types.ReplyMarkups;
-using Stream = OriginsOfDestiny.Data.Models.Items.InteractiveItems.Stream;
-using DConstants = OriginsOfDestiny.Data.Constants.DConstants;
+using Stream = OriginsOfDestiny.DataObjects.Models.Items.InteractiveItems.Stream;
 using OriginsOfDestiny.Game.Constants;
 using OriginsOfDestiny.Common.UI;
 using OriginsOfDestiny.DataObjects.Enums;
+using OriginsOfDestiny.DataObjects.Interfaces.InteractiveItems;
+using OriginsOfDestiny.DataObjects.Models.Entity;
+using OriginsOfDestiny.DataObjects.Models.Items.Pickups;
 
 namespace OriginsOfDestiny.Game.Models.Actions
 {
     public class HeroActions
     {
         private readonly IGameData _gameData;
+        private readonly Hero _hero;
         private static readonly ResourceHelper<HeroActions> ResourceHelper = new();
 
         public HeroActions(IGameData gameData)
         {
             _gameData = gameData;
+            _hero = gameData.ClientData.PlayerContext.Hero;
         }
 
         public async Task LookAround()
@@ -38,25 +42,14 @@ namespace OriginsOfDestiny.Game.Models.Actions
             var textButtons = new HashSet<InlineKeyboardButton>();
             foreach (var iItem in area.InteractiveItems)
             {
+
                 if (iItem is Stream stream)
                 {
-                    textButtons.Add(
-                        InlineKeyboardButton.WithCallbackData(
-                            new ResourceHelper<Stream>()
-                            .GetValue(DConstants.Messages.Items.Use),
-                            $"{DConstants.Messages.Items.Use}_{nameof(Stream)}_{stream.Id}"
-                            )
-                        );
+                    textButtons.Add(UITools.GetButton<Stream>(IInteractiveItem.Messages.Interact, $"_{nameof(Stream)}_{stream.Id}"));
                 }
-                else if (iItem is Hollow duplo)
+                else if (iItem is Hollow hollow)
                 {
-                    textButtons.Add(
-                        InlineKeyboardButton.WithCallbackData(
-                            new ResourceHelper<Hollow>()
-                            .GetValue(DConstants.Messages.Items.Use),
-                            $"{DConstants.Messages.Items.Use}_{nameof(Hollow)}_{duplo.Id}"
-                            )
-                        );
+                    textButtons.Add(UITools.GetButton<Hollow>(IInteractiveItem.Messages.Interact, $"_{nameof(Hollow)}_{hollow.Id}"));
                 }
             }
 
@@ -78,7 +71,7 @@ namespace OriginsOfDestiny.Game.Models.Actions
 
             var sb = new StringBuilder();
 
-            sb.AppendLine("🔺 " +
+            sb.AppendLine("👤 О герое\n🔺 " +
                 string.Format(
                     ResourceHelper.GetValue(Constants.Hero.Name),
                     hero.Name
@@ -122,6 +115,11 @@ namespace OriginsOfDestiny.Game.Models.Actions
             );
         }
 
+        public async Task Notes()
+        {
+            await new NoteActions(_gameData).ShowBaseActions();
+        }
+
         public static IEnumerable<IEnumerable<InlineKeyboardButton>> GetBaseActions()
         {
             var buttons = new HashSet<InlineKeyboardButton>
@@ -137,7 +135,7 @@ namespace OriginsOfDestiny.Game.Models.Actions
             var buttons = new HashSet<InlineKeyboardButton>
             {
                 UITools.GetButton<HeroActions>(Constants.Quests),
-                InlineKeyboardButton.WithCallbackData("📝"),
+                UITools.GetButton<HeroActions>(Constants.Notes),
                 InlineKeyboardButton.WithCallbackData("🎒"),
                 UITools.GetButton<HeroActions>(Constants.AboutPlayer)
             };
@@ -149,6 +147,7 @@ namespace OriginsOfDestiny.Game.Models.Actions
         {
             public static readonly string LookAround = "LOOKAROUND";
             public static readonly string Quests = "QUESTS";
+            public static readonly string Notes = "NOTES";
             public static readonly string AboutPlayer = "ABOUTPLAYER";
 
             public static class Hero
