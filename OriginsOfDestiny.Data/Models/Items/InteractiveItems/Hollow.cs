@@ -7,7 +7,7 @@ using OriginsOfDestiny.DataObjects.Models.Influences;
 
 namespace OriginsOfDestiny.Data.Models.Items.InteractiveItems;
 
-public class Hollow : IInteractiveItem, IDamageTo
+public class Hollow : IInteractiveItem, IDamageTo, ILoot
 {
     public Guid Id { get; set; } = Guid.NewGuid();
     public string Name { get; set; }

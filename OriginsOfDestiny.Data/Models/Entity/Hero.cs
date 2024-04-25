@@ -7,6 +7,7 @@ namespace OriginsOfDestiny.DataObjects.Models.Entity
 {
     using Influences;
     using OriginsOfDestiny.DataObjects.Interfaces.Influences;
+    using OriginsOfDestiny.DataObjects.Models.Items.Pickups;
 
     public class Hero : IEntity, IMortal, IHasInventory, IDamageTo
     {
@@ -14,7 +15,14 @@ namespace OriginsOfDestiny.DataObjects.Models.Entity
         public int MaxHP { get; set; } = 100;
         public int HP { get; set; } = 100;
         public string Name { get; set; }
-        public IEnumerable<IItem> Inventory { get; set; } = new HashSet<IItem>();
+        public IEnumerable<IItem> Inventory { get; set; } = new HashSet<IItem>() {
+            new Note()
+            {
+                Name = "Бумага 📜",
+                Description = "",
+                Empty = true
+            }
+        };
         public Influences Influences { get; set; } = new Influences() { };
         public Damage Damage => new();
         public string KillMessage { get; set; }

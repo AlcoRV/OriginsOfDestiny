@@ -45,11 +45,11 @@ namespace OriginsOfDestiny.Game.Models.Actions
 
                 if (iItem is Stream stream)
                 {
-                    textButtons.Add(UITools.GetButton<Stream>(IInteractiveItem.Messages.Interact, $"_{nameof(Stream)}_{stream.Id}"));
+                    textButtons.Add(UITools.GetButton<Stream>(IInteractiveItem.Messages.Interact, "_", nameof(Stream), stream.Id.ToString() ));
                 }
                 else if (iItem is Hollow hollow)
                 {
-                    textButtons.Add(UITools.GetButton<Hollow>(IInteractiveItem.Messages.Interact, $"_{nameof(Hollow)}_{hollow.Id}"));
+                    textButtons.Add(UITools.GetButton<Hollow>(IInteractiveItem.Messages.Interact, "_", nameof(Hollow), hollow.Id.ToString() ));
                 }
             }
 
@@ -115,9 +115,9 @@ namespace OriginsOfDestiny.Game.Models.Actions
             );
         }
 
-        public async Task Notes()
+        public async Task Notes(string data)
         {
-            await new NoteActions(_gameData).ShowBaseActions();
+            await new NoteActions(_gameData).Handle(data);
         }
 
         public static IEnumerable<IEnumerable<InlineKeyboardButton>> GetBaseActions()

@@ -117,41 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BASEMESSAGE" xml:space="preserve">
-    <value>📝 Записки
-Оказывается, иногда можно не только прикоснуться к тайне, но и создать её 😈</value>
+  <data name="OK" xml:space="preserve">
+    <value>Ты боролся с мыслями, силился над словами - записка готова!</value>
   </data>
-  <data name="NONOTES" xml:space="preserve">
-    <value>😔 Увы, в кармане ни бумажки...</value>
-  </data>
-  <data name="NOTES_CANTLEAVE" xml:space="preserve">
-    <value>📝 Записки
-Ты оглядываешься вокруг, но кинуть записку некуда...</value>
-  </data>
-  <data name="NOTES_LEAVE" xml:space="preserve">
-    <value>Подкинуть 🎭</value>
-  </data>
-  <data name="NOTES_LEAVE_NEW_SECRET" xml:space="preserve">
-    <value>📝 Записки
-Новая тайна заложена 😈</value>
-  </data>
-  <data name="NOTES_LEAVE_PLACES" xml:space="preserve">
-    <value>📝 Записки
-Ты приглядел пару интересных мест 😈</value>
-  </data>
-  <data name="NOTES_SHOW" xml:space="preserve">
-    <value>📝 Записки
-{0}</value>
-  </data>
-  <data name="NOTES_SHOW_EMPTY" xml:space="preserve">
-    <value>📝 Записки
-(Так пуста, что могла бы быть использована для написания баллады о герое без приключений!)</value>
-  </data>
-  <data name="NOTES_WRITENEW" xml:space="preserve">
-    <value>Написать 🖋️</value>
-  </data>
-  <data name="NOTES_WRITENEW_ENTER" xml:space="preserve">
-    <value>📝 Записки
-(Напиши записку в формате {Заголовок}:{Содержание})</value>
+  <data name="REPEAT_OR_CANCEL" xml:space="preserve">
+    <value>Ты усердно пытаешься написать записку, пока мозг постепенно вылезает через уши
+(Заполни по шаблону "{Заголовок}:{Содержание}", либо отправь "-")</value>
   </data>
 </root>

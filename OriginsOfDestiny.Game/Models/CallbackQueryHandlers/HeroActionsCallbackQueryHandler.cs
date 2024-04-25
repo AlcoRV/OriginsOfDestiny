@@ -31,7 +31,7 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
         }
         else if (actionCode.Equals(HeroActions.Constants.Notes))
         {
-            await gameData.ClientData.PlayerContext.Hero.GetActions(gameData).Notes();
+            await gameData.ClientData.PlayerContext.Hero.GetActions(gameData).Notes(callbackQuery.Data);
         }
         else if (actionCode.Equals(IInteractiveItem.Messages.Interact))
         {

@@ -6,6 +6,7 @@ namespace OriginsOfDestiny.Common.Models.WaitingFor;
 public abstract class WaitingForBaseMessageHandler
 {
     protected IGameData? GameData { get; private init; }
+    public bool IgnoreCallbackQuery { get; protected set; } = true;
 
     public static class Factory
     {

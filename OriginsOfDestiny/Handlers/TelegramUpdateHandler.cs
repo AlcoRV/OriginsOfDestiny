@@ -37,6 +37,12 @@ public class TelegramUpdateHandler : ITelegramUpdateHandler
         {
             if (!gameData.ClientData.AvailablesCodes.Contains(update.CallbackQuery!.Data)) { return; }
 
+            if (gameData.ClientData.WaitingForMessage != null && !gameData.ClientData.WaitingForMessage.IgnoreCallbackQuery)
+            {
+                gameData.ClientData.WaitingForMessage?.Handle(update.Message);
+                return;
+            }
+
             await manager.GetCallbackQueryHandler(update.CallbackQuery!.Data!).Handle(gameData, update.CallbackQuery);
             gameData.ClientData.LastCode = update.CallbackQuery.Data;
         }
@@ -91,19 +97,23 @@ public class TelegramUpdateHandler : ITelegramUpdateHandler
         gameData.ClientData.PlayerContext.Hero.Element = DataObjects.Enums.Element.Fire;
         gameData.ClientData.PlayerContext.Hero.Influences.Effects[DataObjects.Enums.Element.Fire] = 1.25;
         gameData.ClientData.PlayerContext.Hero.Influences.Effects[DataObjects.Enums.Element.Water] = 0.75;
-        var inventory = gameData.ClientData.PlayerContext.Hero.Inventory as HashSet<IItem>;
-        inventory.Add(new Note()
+        /*var inventory = gameData.ClientData.PlayerContext.Hero.Inventory as HashSet<IItem>;
+
+        if (!inventory.Any())
         {
-            Name = "Таинственная записка 📜",
-            Description = "Какое-то описание странной записки. П.с. ОТ ДРУГА",
-            Empty = false
-        });
-        inventory.Add(new Note()
-        {
-            Name = "Бумага 📜",
-            Description = "",
-            Empty = true
-        });
+            inventory.Add(new Note()
+            {
+                Name = "Таинственная записка 📜",
+                Description = "Какое-то описание странной записки. П.с. ОТ ДРУГА",
+                Empty = false
+            });
+            inventory.Add(new Note()
+            {
+                Name = "Бумага 📜",
+                Description = "",
+                Empty = true
+            });
+        }*/
 
         gameData.ClientData.PlayerContext.Area = TemporaryTestData.DownEAForest;
     }
