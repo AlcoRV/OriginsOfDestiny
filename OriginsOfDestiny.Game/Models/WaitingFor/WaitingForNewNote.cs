@@ -19,8 +19,6 @@ namespace OriginsOfDestiny.Game.Models.WaitingFor
 
         public override async Task Handle(Message message)
         {
-            var data = message?.Text.Split(':');
-
             if(message == null)
             {
                 await GameData.ClientData.EditMainMessageAsync(
@@ -29,7 +27,9 @@ namespace OriginsOfDestiny.Game.Models.WaitingFor
                  );
                 return;
             }
-            
+
+            var data = message.Text.Split(':');
+
             if (message.Text.Equals("-")) {
                 GameData.ClientData.PlayerContext.ActiveItem = null;
                 GameData.ClientData.WaitingForMessage = null;

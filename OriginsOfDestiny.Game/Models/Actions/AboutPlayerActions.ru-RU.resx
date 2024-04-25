@@ -118,18 +118,69 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ABOUTPLAYER" xml:space="preserve">
-    <value>👤</value>
+    <value>👤 О герое</value>
   </data>
-  <data name="LOOKAROUND" xml:space="preserve">
-    <value>Оглядеться</value>
+  <data name="ABOUTPLAYER_INFLUENCES" xml:space="preserve">
+    <value>Влияние элементов</value>
   </data>
-  <data name="NOTES" xml:space="preserve">
-    <value>📝</value>
+  <data name="EARTH" xml:space="preserve">
+    <value>Бесконечные просторы земли, что хранят тайны и богатства в своих недрах 🪨</value>
   </data>
-  <data name="QUESTS" xml:space="preserve">
-    <value>⁉️</value>
+  <data name="ELEMENT" xml:space="preserve">
+    <value>Пустота и отсутствие, создающие обрывки реальности 🌀</value>
+  </data>
+  <data name="FIRE" xml:space="preserve">
+    <value>Раскаленный пламень, что озаряет тьму и пронзает сердца 🔥</value>
+  </data>
+  <data name="HEROGENDER_M" xml:space="preserve">
+    <value>Пол героя: Мужской</value>
+  </data>
+  <data name="HEROGENDER_W" xml:space="preserve">
+    <value>Пол героя: Женский</value>
+  </data>
+  <data name="HERONAME" xml:space="preserve">
+    <value>Имя героя: {0}</value>
+  </data>
+  <data name="INFEARTH" xml:space="preserve">
+    <value>земле</value>
+  </data>
+  <data name="INFFIRE" xml:space="preserve">
+    <value>огню</value>
+  </data>
+  <data name="INFWATER" xml:space="preserve">
+    <value>воде</value>
+  </data>
+  <data name="INFWIND" xml:space="preserve">
+    <value>ветру</value>
+  </data>
+  <data name="MAINELEMENT" xml:space="preserve">
+    <value>Стихия героя:</value>
+  </data>
+  <data name="MARRIED_M" xml:space="preserve">
+    <value>Не женат</value>
+  </data>
+  <data name="MARRIED_W" xml:space="preserve">
+    <value>Не замужем</value>
+  </data>
+  <data name="PERSONALITY" xml:space="preserve">
+    <value>Характер скверный (хотя, посмотрим)</value>
+  </data>
+  <data name="RESISTANCE" xml:space="preserve">
+    <value>сопротивление</value>
+  </data>
+  <data name="WATER" xml:space="preserve">
+    <value>Бурлящий поток, несущий в себе силу и жизнь в каждой капле воды 💧</value>
+  </data>
+  <data name="WEAKNESS" xml:space="preserve">
+    <value>уязвимость к</value>
   </data>
   <data name="WESEE" xml:space="preserve">
     <value>Вы видите:</value>
+  </data>
+  <data name="WIND" xml:space="preserve">
+    <value>Вихрь невидимой силы, что поддерживает в нём бесстрашие и свободу духа 🌪</value>
+  </data>
+  <data name="WITHOUTINFLUENCE" xml:space="preserve">
+    <value>Без влияний</value>
   </data>
 </root>

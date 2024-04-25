@@ -1,14 +1,9 @@
-﻿using OriginsOfDestiny.Common.Helpers;
-using OriginsOfDestiny.Common.Interfaces.Handlers;
+﻿using OriginsOfDestiny.Common.Interfaces.Handlers;
 using OriginsOfDestiny.Common.Interfaces.Storages;
-using OriginsOfDestiny.Data.Constants;
 using OriginsOfDestiny.Data.Models.Items.InteractiveItems;
 using OriginsOfDestiny.DataObjects.Interfaces.InteractiveItems;
-using OriginsOfDestiny.DataObjects.Interfaces.Items;
-using OriginsOfDestiny.Game.Constants;
 using OriginsOfDestiny.Game.Extentions;
 using OriginsOfDestiny.Game.Models.Actions;
-using System.Text;
 using Telegram.Bot.Types;
 using Stream = OriginsOfDestiny.DataObjects.Models.Items.InteractiveItems.Stream;
 
@@ -27,7 +22,7 @@ public class HeroActionsCallbackQueryHandler : ICallbackQueryHandler
         }
         else if (actionCode.Equals(HeroActions.Constants.AboutPlayer))
         {
-            await gameData.ClientData.PlayerContext.Hero.GetActions(gameData).AboutPlayer();
+            await gameData.ClientData.PlayerContext.Hero.GetActions(gameData).AboutPlayer(callbackQuery.Data);
         }
         else if (actionCode.Equals(HeroActions.Constants.Notes))
         {

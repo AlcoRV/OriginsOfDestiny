@@ -64,55 +64,9 @@ namespace OriginsOfDestiny.Game.Models.Actions
                 );
         }
 
-        public async Task AboutPlayer()
+        public async Task AboutPlayer(string data)
         {
-            var hero = _gameData.ClientData.PlayerContext.Hero;
-            var genderPostfix = hero.Gender == Gender.Man ? "_M" : "_W";
-
-            var sb = new StringBuilder();
-
-            sb.AppendLine("👤 О герое\n🔺 " +
-                string.Format(
-                    ResourceHelper.GetValue(Constants.Hero.Name),
-                    hero.Name
-                    ) 
-                );
-
-            sb.AppendLine("🔺 " +
-                    ResourceHelper.GetValue(Constants.Hero.Gender + genderPostfix)
-                );
-
-            sb.AppendLine("🔺 " + ResourceHelper.GetValue(Constants.Hero.Personality));
-            sb.AppendLine("🔺 " + ResourceHelper.GetValue(Constants.Hero.Married + genderPostfix));
-
-            var element = hero.Element == Element.None
-                ? Constants.Elements.Element
-                : hero.Element.ToString().ToUpper();
-            sb.AppendLine(ResourceHelper.GetValue(element));
-            sb.AppendLine();
-
-            sb.AppendLine(ResourceHelper.GetValue(Constants.Hero.Influences.Name));
-            var elementsInfluence = hero.Influences.Effects.Where(e => e.Value != 1);
-            if(elementsInfluence.Any() )
-            {
-                foreach (var influence in elementsInfluence)
-                {
-                    var type = influence.Value > 1 ? Constants.Hero.Influences.Resistance : Constants.Hero.Influences.Weakness;
-                    var value = (int)Math.Abs((influence.Value - 1) * 100);
-
-                    sb.AppendLine($"🌀 {ResourceHelper.GetValue(type)} {ResourceHelper.GetValue("INF" + influence.Key.ToString().ToUpper())}: {value}%");
-                }
-            }
-            else
-            {
-                sb.AppendLine("🌀 " + ResourceHelper.GetValue(Constants.Hero.Influences.Without));
-            }
-
-
-            await _gameData.ClientData.EditMainMessageAsync(
-             caption: sb.ToString(),
-             replyMarkup: new InlineKeyboardMarkup(GetBaseActions())
-            );
+            await new AboutPlayerActions(_gameData).Handle(data);
         }
 
         public async Task Notes(string data)
@@ -149,35 +103,6 @@ namespace OriginsOfDestiny.Game.Models.Actions
             public static readonly string Quests = "QUESTS";
             public static readonly string Notes = "NOTES";
             public static readonly string AboutPlayer = "ABOUTPLAYER";
-
-            public static class Hero
-            {
-                public static readonly string Name = "HERONAME";
-                public static readonly string Gender = "HEROGENDER";
-                public static readonly string Personality = "PERSONALITY";
-                public static readonly string Married = "MARRIED";
-                public static class Influences
-                {
-                    public static readonly string Name = "INFLUENCES";
-                    public static readonly string Without = "WITHOUTINFLUENCE";
-                    public static readonly string Weakness = "WEAKNESS";
-                    public static readonly string Resistance = "RESISTANCE";
-
-                    public static readonly string Fire = "INFFIRE";
-                    public static readonly string Water = "INFWATER";
-                    public static readonly string Wind = "INFWIND";
-                    public static readonly string Earth = "INFEARTH";
-                }
-            }
-
-            public static class Elements
-            {
-                public static readonly string Fire = "FIRE";
-                public static readonly string Water = "WATER";
-                public static readonly string Wind = "WIND";
-                public static readonly string Earth = "EARTH";
-                public static readonly string Element = "ELEMENT";
-            }
         }
     }
 }
