@@ -10,15 +10,22 @@ namespace OriginsOfDestiny.Extensions
         {
             var cts = new CancellationTokenSource();
             var botClient = app.Services.GetRequiredService<ITelegramBotClient>();
-            var botHandler = app.Services.GetRequiredService<IComandHandler>();
+            var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
 
             botClient.StartReceiving(
                 async (botClient, update, cancellationToken) =>
                 {
+                    using var scope = scopeFactory.CreateScope();
+                    var botHandler = scope.ServiceProvider.GetRequiredService<IComandHandler>();
+
                     if (update.Message != null && update.Message.Text != null)
                     {
                         // Обрабатываем текстовые команды
-                        await botHandler.HandleUpdateAsync(update.Message, cancellationToken);
+                        await botHandler.HandleMessageUpdateAsync(update.Message, cancellationToken);
+                    }
+                    if (update.CallbackQuery != null && update.CallbackQuery.Data != null)
+                    {
+                        await botHandler.HandleCallbackQueryUpdateAsync(update.CallbackQuery, cancellationToken);
                     }
                 },
                 (botClient, exception, cancellationToken) =>

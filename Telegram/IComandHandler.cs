@@ -4,6 +4,8 @@ namespace OriginsOfDestiny.Telegram
 {
     public interface IComandHandler
     {
-        Task HandleUpdateAsync(Message message, CancellationToken token);
+        Task HandleMessageUpdateAsync(Message message, CancellationToken token);
+
+        Task HandleCallbackQueryUpdateAsync(CallbackQuery query, CancellationToken token);
     }
 }
