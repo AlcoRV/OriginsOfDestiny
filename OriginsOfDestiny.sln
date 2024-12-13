@@ -1,25 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.7.34202.233
+VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny", "OriginsOfDestiny\OriginsOfDestiny.csproj", "{4C203182-5CEA-4B97-94E1-AE01CD69FDAA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.Common", "OriginsOfDestiny.Common\OriginsOfDestiny.Common.csproj", "{23771034-CB88-491A-B8C6-DFC162E1B032}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.Game", "OriginsOfDestiny.Game\OriginsOfDestiny.Game.csproj", "{5033EF07-B7A5-483F-BFC5-C6BFAF1BA97D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE} = {AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contents", "Contents", "{4E257C4E-EBDC-40A8-A51D-E97E389E8505}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.StartArc", "Contents\OriginsOfDestiny.StartArc\OriginsOfDestiny.StartArc.csproj", "{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE} = {AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginsOfDestiny.DataObjects", "OriginsOfDestiny.Data\OriginsOfDestiny.DataObjects.csproj", "{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginsOfDestiny", "OriginsOfDestiny.csproj", "{30DD8D34-CC68-4E70-91AC-AB38F988ED63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,34 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C203182-5CEA-4B97-94E1-AE01CD69FDAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C203182-5CEA-4B97-94E1-AE01CD69FDAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C203182-5CEA-4B97-94E1-AE01CD69FDAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C203182-5CEA-4B97-94E1-AE01CD69FDAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23771034-CB88-491A-B8C6-DFC162E1B032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23771034-CB88-491A-B8C6-DFC162E1B032}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23771034-CB88-491A-B8C6-DFC162E1B032}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23771034-CB88-491A-B8C6-DFC162E1B032}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5033EF07-B7A5-483F-BFC5-C6BFAF1BA97D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5033EF07-B7A5-483F-BFC5-C6BFAF1BA97D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5033EF07-B7A5-483F-BFC5-C6BFAF1BA97D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5033EF07-B7A5-483F-BFC5-C6BFAF1BA97D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC2277AA-5EAA-4843-B5A9-2783E1C24DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30DD8D34-CC68-4E70-91AC-AB38F988ED63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30DD8D34-CC68-4E70-91AC-AB38F988ED63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30DD8D34-CC68-4E70-91AC-AB38F988ED63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30DD8D34-CC68-4E70-91AC-AB38F988ED63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{C7CA4A8F-78F9-4B06-9546-5EB0C0CF503D} = {4E257C4E-EBDC-40A8-A51D-E97E389E8505}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {17459A1A-D13F-4588-B698-B0B1544BB541}
+		SolutionGuid = {E25AD7E4-BFCF-4E44-BE59-45240CB80730}
 	EndGlobalSection
 EndGlobal
