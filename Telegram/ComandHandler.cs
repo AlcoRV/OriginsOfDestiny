@@ -1,21 +1,20 @@
-﻿using OriginsOfDestiny.Data;
-using OriginsOfDestiny.Models.Dialogs;
+﻿using Microsoft.EntityFrameworkCore;
+using OriginsOfDestiny.Models.Sessions;
 using OriginsOfDestiny.Repositories;
 using StackExchange.Redis;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace OriginsOfDestiny.Telegram
 {
-    public class ComandHandler: IComandHandler
+    public class ComandHandler : IComandHandler
     {
         private readonly ITelegramBotClient _botClient;
         private readonly IConnectionMultiplexer _redis;
-        private readonly IRepository<Dialog> _repository;
+        private readonly IRepository<UserSession> _repository;
 
-        public ComandHandler(ITelegramBotClient botClient, IConnectionMultiplexer redis, IRepository<Dialog> repository)
+        public ComandHandler(ITelegramBotClient botClient, IConnectionMultiplexer redis, IRepository<UserSession> repository)
         {
             _botClient = botClient;
             _redis = redis;
@@ -24,22 +23,63 @@ namespace OriginsOfDestiny.Telegram
 
         public async Task HandleCallbackQueryUpdateAsync(CallbackQuery query, CancellationToken token)
         {
-            var dialog = _repository.Get(d => d.Id == query.Data).FirstOrDefault();
-            if (dialog == null) { return; }
+            var session = _repository.Get(s => s.Id == query.From.Id)
+                .FirstOrDefault();
 
-            var buttons = dialog.Responses.Select(r => new[] { InlineKeyboardButton.WithCallbackData(r.Value, r.Key) });
+            session.ActiveDialogId = query.Data;
+            _repository.Update(session);
 
-            await _botClient.SendMessage(query.From.Id, dialog.Text, replyMarkup: new InlineKeyboardMarkup(buttons));
+            session = _repository.Get(s => s.Id == query.From.Id)
+                .Include(s => s.ActiveDialog)
+                .FirstOrDefault();
+
+            if (session.ActiveDialog == null) { return; }
+
+            InlineKeyboardMarkup markup = null;
+            if (session.ActiveDialog.Responses != null)
+            {
+                var buttons = session.ActiveDialog.Responses.Select(r => new[] { InlineKeyboardButton.WithCallbackData(r.Value, r.Key) });
+                markup = new InlineKeyboardMarkup(buttons);
+            }
+
+            if (session.ActiveDialog.NeedReplace)
+            {
+                await _botClient.EditMessageText(
+                    chatId: query.From.Id,
+                    messageId: query.Message.Id, // Убедитесь, что используется правильное свойство
+                    session.ActiveDialog.Text,
+                    replyMarkup: markup
+                );
+            }
+            else
+            {
+                await _botClient.SendMessage(query.From.Id, session.ActiveDialog.Text, replyMarkup: markup);
+            }
         }
 
         public async Task HandleMessageUpdateAsync(Message message, CancellationToken token)
         {
-            var dialog = _repository.Get(d => d.Id == message.Text).FirstOrDefault();
-            if (dialog == null) { return; }
+            var session = _repository.Get(s => s.Id == message.Chat.Id)
+                .Include(s => s.ActiveDialog)
+                .FirstOrDefault();
 
-            var buttons = dialog.Responses.Select(r => new[] { InlineKeyboardButton.WithCallbackData(r.Value, r.Key) });
+            if (session == null)
+            {
+                _repository.Create(new UserSession()
+                {
+                    Id = message.Chat.Id
+                });
 
-            await _botClient.SendMessage(message.Chat.Id, dialog.Text, replyMarkup: new InlineKeyboardMarkup(buttons));
+                session = _repository.Get(s => s.Id == message.Chat.Id)
+                    .Include(s => s.ActiveDialog)
+                    .FirstOrDefault();
+            }
+
+            if (session.ActiveDialog == null) { return; }
+
+            var buttons = session.ActiveDialog.Responses.Select(r => new[] { InlineKeyboardButton.WithCallbackData(r.Value, r.Key) });
+
+            await _botClient.SendMessage(message.Chat.Id, session.ActiveDialog.Text, replyMarkup: new InlineKeyboardMarkup(buttons));
 
             /*
 

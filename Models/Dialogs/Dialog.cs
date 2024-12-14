@@ -1,4 +1,6 @@
-﻿namespace OriginsOfDestiny.Models.Dialogs
+﻿using OriginsOfDestiny.Models.Sessions;
+
+namespace OriginsOfDestiny.Models.Dialogs
 {
     public class Dialog
     {
@@ -6,8 +8,10 @@
 
         public string Text { get; set; }
 
-        public Dictionary<string, string> Responses { get; set; } = [];
+        public Dictionary<string, string>? Responses { get; set; } = null;
 
         public bool NeedReplace { get; set; } = true;
+
+        public virtual List<UserSession> Sessions { get; set; }
     }
 }

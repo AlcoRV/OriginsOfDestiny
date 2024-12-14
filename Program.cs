@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using OriginsOfDestiny.Data;
 using OriginsOfDestiny.Extensions;
 using OriginsOfDestiny.Models.Dialogs;
+using OriginsOfDestiny.Models.Sessions;
 using OriginsOfDestiny.Repositories;
 using OriginsOfDestiny.Telegram;
 using StackExchange.Redis;
@@ -17,6 +18,7 @@ builder.Services.AddSingleton<ITelegramBotClient>(botClient);
 builder.Services.AddScoped<IComandHandler, ComandHandler>();
 
 builder.Services.AddScoped<IRepository<Dialog>, DialogRepository>();
+builder.Services.AddScoped<IRepository<UserSession>, SessionRepository>();
 
 var dbConnectionString = builder.Configuration["Db:ConnectionString"];
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(dbConnectionString ?? throw new NullReferenceException("Db connection string not found!")));

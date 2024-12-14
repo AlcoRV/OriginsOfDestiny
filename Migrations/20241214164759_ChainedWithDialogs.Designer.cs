@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using OriginsOfDestiny.Data;
@@ -12,9 +13,11 @@ using OriginsOfDestiny.Data;
 namespace OriginsOfDestiny.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241214164759_ChainedWithDialogs")]
+    partial class ChainedWithDialogs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,6 +66,7 @@ namespace OriginsOfDestiny.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<Dictionary<string, string>>("Responses")
+                        .IsRequired()
                         .HasColumnType("hstore");
 
                     b.Property<string>("Text")
@@ -82,13 +86,16 @@ namespace OriginsOfDestiny.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("ActiveDialogId")
+                    b.Property<Guid?>("ActiveDialogId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ActiveDialogId1")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ActiveDialogId");
+                    b.HasIndex("ActiveDialogId1");
 
                     b.ToTable("Sessions");
                 });
@@ -113,7 +120,7 @@ namespace OriginsOfDestiny.Migrations
                 {
                     b.HasOne("OriginsOfDestiny.Models.Dialogs.Dialog", "ActiveDialog")
                         .WithMany("Sessions")
-                        .HasForeignKey("ActiveDialogId")
+                        .HasForeignKey("ActiveDialogId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

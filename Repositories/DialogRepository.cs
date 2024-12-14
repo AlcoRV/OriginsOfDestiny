@@ -13,6 +13,16 @@ namespace OriginsOfDestiny.Repositories
             _dbContext = dbContext;
         }
 
+        public void Create(Dialog entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Dialog entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public IQueryable<Dialog> Get(Expression<Func<Dialog, bool>> expression)
         {
             if (!_dbContext.Dialogs.Any())
@@ -38,8 +48,14 @@ namespace OriginsOfDestiny.Repositories
 
                 _dbContext.SaveChanges();
             }
+            return expression == null
+            ? _dbContext.Dialogs
+                : _dbContext.Dialogs.Where(expression);
+        }
 
-            return _dbContext.Dialogs.Where(expression);
+        public void Update(Dialog entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
