@@ -7,5 +7,7 @@
         public string Text { get; set; }
 
         public Dictionary<string, string> Responses { get; set; } = [];
+
+        public bool NeedReplace { get; set; } = true;
     }
 }
