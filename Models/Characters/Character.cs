@@ -9,6 +9,7 @@ namespace OriginsOfDestiny.Models.Characters
         public string Name { get; set; }
         public int Level { get; set; }
         public int Health { get; set; }
+        public int MaxHealth { get; set; }
         public int Mana { get; set; }
         public bool IsAlive => Health > 0;
 
