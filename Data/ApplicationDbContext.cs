@@ -20,14 +20,18 @@ namespace OriginsOfDestiny.Data
             modelBuilder.Entity<Player>()
                 .ToTable(nameof(Player));
 
+            modelBuilder.Entity<Player>()
+                .Property(p => p.IsActive)
+                .HasDefaultValue(true);
+
             modelBuilder.Entity<UserSession>()
                 .HasKey(us => us.Id);
 
             modelBuilder.Entity<Player>()
                 .HasOne(p => p.Session)
-                .WithOne(us => us.Player)
-                .HasForeignKey<Player>(p => p.TelegramId)
-                .HasPrincipalKey<UserSession>(us => us.Id);
+                .WithMany(us => us.Players)
+                .HasForeignKey(p => p.TelegramId)
+                .HasPrincipalKey(us => us.Id);
 
             base.OnModelCreating(modelBuilder);
         }

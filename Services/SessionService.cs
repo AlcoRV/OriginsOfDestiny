@@ -19,24 +19,29 @@ namespace OriginsOfDestiny.Services
             var session = await _dbContext.Sessions
                 .Where(s => s.Id == userId)
                 .Include(s => s.ActiveDialog)
-                .Include(s => s.Player)
+                .Include(s => s.Players)
                 .FirstOrDefaultAsync();
 
-            if(session != null) { return session; }
-
-            session = new UserSession()
+            if (session == null)
             {
-                Id = userId,
-                ActiveDialogId = @"\start"
-            };
+                session = new UserSession()
+                {
+                    Id = userId,
+                    ActiveDialogId = @"\start"
+                };
+                await _dbContext.Sessions.AddAsync(session);
+                await _dbContext.SaveChangesAsync();
+            }
 
-            await _dbContext.Sessions.AddAsync(session);
+            var player = session.Players.FirstOrDefault(p => p.IsActive);
+            
+            if(player == null)
+            {
+                player = CreateDefaultPlayer(userId);
 
-            var player = CreateDefaultPlayer(userId);
-
-            await _dbContext.Players.AddAsync(player);
-
-            await _dbContext.SaveChangesAsync();
+                await _dbContext.Players.AddAsync(player);
+                await _dbContext.SaveChangesAsync();
+            }
 
             return session;
         }
@@ -47,13 +52,12 @@ namespace OriginsOfDestiny.Services
 
             if (session != null)
             {
-                _dbContext.Sessions.Remove(session);
-
-                var player = await _dbContext.Players.FirstOrDefaultAsync(p => p.TelegramId == userId);
+                var player = await _dbContext.Players.FirstOrDefaultAsync(p => p.TelegramId == userId && p.IsActive);
                 var character = await _dbContext.Characters.FirstOrDefaultAsync(ch => ch.Id == player.Id);
-                _dbContext.Players.Remove(player);
-                _dbContext.Characters.Remove(character);
-
+                player.IsActive = false;
+                player.DeactivationDate = DateTime.UtcNow;
+                
+                _dbContext.Players.Update(player);
                 await _dbContext.SaveChangesAsync();
             }
         }
@@ -82,7 +86,8 @@ namespace OriginsOfDestiny.Services
                     { "agility", 2 },
                     { "inteligence", 2 },
                     { "luck", 2 }
-                }
+                },
+                IsActive = true
             };
         }
     }

@@ -1,8 +1,9 @@
 ﻿using OriginsOfDestiny.Telegram;
 
-namespace OriginsOfDestiny.Handlers
+namespace OriginsOfDestiny.Services
 {
-    public interface IStartService : ICallbackHandler, IMessageHandler {
+    public interface IStartService : ICallbackHandler, IMessageHandler
+    {
         Task Start(long id, CancellationToken cancellationToken);
     }
 }
